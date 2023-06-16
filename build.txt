@@ -1,0 +1,3 @@
+displayName = Extra Equipment Loadouts
+author = pbone
+version = 0.1

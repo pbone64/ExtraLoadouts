@@ -1,0 +1,22 @@
+Configs: {
+	LoadoutsConfig: {
+		DisplayName: Extra Loadouts Config
+
+		ExtraLoadouts: {
+			Label: Extra Loadouts
+			Tooltip: How many extra loadouts you can access.
+		}
+	}
+}
+
+GUI: {
+	Loadout4: Loadout 4
+	Loadout5: Loadout 5
+	Loadout6: Loadout 6
+
+	DisabledButOccupied:
+		'''
+		This layout was disabled in the mod's config but it still contains items!
+		It will remain accessible until all items are removed from it
+		'''
+}
