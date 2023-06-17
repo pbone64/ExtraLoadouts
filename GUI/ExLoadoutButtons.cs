@@ -123,7 +123,7 @@ namespace ExtraLoadouts.GUI {
         }
 
         void ILoadable.Unload() {
-            LoadoutButtonsTexture?.Dispose();
+            Main.QueueMainThreadAction(() => LoadoutButtonsTexture?.Dispose());
         }
     }
 }

@@ -1,0 +1,9 @@
+[b]Extra Equipment Loadouts[/b] is a dead-simple Quality of Life mod that adds up to 3 additional loadout slots (amount can be configured).
+
+[b]Note:[/b] Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
+
+[h1]Links[/h1]
+[list]
+ [*] GitHub: https://github.com/Pbone3/ExtraLoadouts
+ [*] Discord: https://discord.gg/TRJqeq3Acm
+[/list]

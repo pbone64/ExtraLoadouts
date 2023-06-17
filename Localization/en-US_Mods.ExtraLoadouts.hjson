@@ -13,7 +13,6 @@ GUI: {
 	Loadout4: Loadout 4
 	Loadout5: Loadout 5
 	Loadout6: Loadout 6
-
 	DisabledButOccupied:
 		'''
 		This layout was disabled in the mod's config but it still contains items!

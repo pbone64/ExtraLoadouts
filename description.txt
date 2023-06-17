@@ -1,1 +1,5 @@
-Extra Equipment Loadouts is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+A dead-simple QoL mod that adds up to 3 more loadout slots (amount can be configured).
+
+Note: Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
+
+Links to a GitHub and Discord can be found on the workshop page.
