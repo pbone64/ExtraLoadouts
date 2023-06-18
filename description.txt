@@ -1,4 +1,6 @@
-A dead-simple QoL mod that adds up to 3 more loadout slots (amount can be configured).
+Various improvements to vanilla's loadout system.
+- Adds up to 3 more loadout slots (amount can be configured).
+- Adds items that let you copy accessories equipped in other loadouts.
 
 Note: Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
 

@@ -7,8 +7,8 @@ namespace ExtraLoadouts {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         [Slider]
-        [Range(0, ExtraLoadoutsMod.MAX_EXTRA_LOADOUTS)]
-        [DefaultValue(ExtraLoadoutsMod.MAX_EXTRA_LOADOUTS)]
+        [Range(0, ExtraLoadoutsMod.EXTRA_LOADOUTS)]
+        [DefaultValue(ExtraLoadoutsMod.EXTRA_LOADOUTS)]
         public int ExtraLoadouts;
     }
 }

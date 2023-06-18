@@ -1,4 +1,10 @@
-[b]Extra Equipment Loadouts[/b] is a dead-simple Quality of Life mod that adds up to 3 additional loadout slots (amount can be configured).
+[b]Extended Equipment Loadouts[/b] is Quality of Life mod that improves the vanilla loadout system.
+
+[h1]Features[/h1]
+[list]
+ [*] Up to three extra loadouts (configurable).
+ [*] Items that let you copy accessories equipped in other loadouts.
+[/list]
 
 [b]Note:[/b] Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
 

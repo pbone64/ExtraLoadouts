@@ -10,7 +10,7 @@ namespace ExtraLoadouts {
     internal sealed class LoadoutPlayer : ModPlayer {
         internal EquipmentLoadout CurrentExLoadout => ExLoadouts[CurrentExLoadoutIndex];
 
-        internal readonly EquipmentLoadout[] ExLoadouts = new EquipmentLoadout[ExtraLoadoutsMod.MAX_EXTRA_LOADOUTS] {
+        internal readonly EquipmentLoadout[] ExLoadouts = new EquipmentLoadout[ExtraLoadoutsMod.EXTRA_LOADOUTS] {
             new(),
             new(),
             new(),
@@ -45,7 +45,7 @@ namespace ExtraLoadouts {
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
-            for (int i = 0; i < ExtraLoadoutsMod.MAX_EXTRA_LOADOUTS; i++) {
+            for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
                 LoadoutSyncing.SyncExLoadout(Player, i, toWho, fromWho);
             }
         }

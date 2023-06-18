@@ -14,8 +14,6 @@ namespace ExtraLoadouts.GUI {
             Disabled
         }
 
-        internal const int VANILLA_LOADOUTS = 3;
-
         internal static Asset<Texture2D> LoadoutButtonsTexture = null;
 
         void ILoadable.Load(Mod mod) {
@@ -47,7 +45,7 @@ namespace ExtraLoadouts.GUI {
             Rectangle[] buttonHitboxes = new Rectangle[loadoutsToDraw];
 
             for (int i = 0; i < loadoutsToDraw; i++) {
-                buttonHitboxes[i] = new(rectangle.X + rectangle.Width, rectangle.Y + (buttonHeight + buttonSpacing) * (VANILLA_LOADOUTS + i), 32, 32);
+                buttonHitboxes[i] = new(rectangle.X + rectangle.Width, rectangle.Y + (buttonHeight + buttonSpacing) * (ExtraLoadoutsMod.VANILLA_LOADOUTS + i), 32, 32);
 
                 bool hovered = false;
                 if (buttonHitboxes[i].Contains(Main.MouseScreen.ToPoint())) {
@@ -55,7 +53,7 @@ namespace ExtraLoadouts.GUI {
                     player.mouseInterface = true;
                     
                     if (!Main.mouseText) {
-                        string text = Language.GetTextValue("Mods.ExtraLoadouts.GUI.Loadout" + (VANILLA_LOADOUTS + 1 + i));
+                        string text = Language.GetTextValue("Mods.ExtraLoadouts.GUI.Loadout" + (ExtraLoadoutsMod.VANILLA_LOADOUTS + 1 + i));
                         if (statuses[i] == LoadoutStatus.DisabledButOccupied) {
                             text += "\n";
                             text += Language.GetTextValue("Mods.ExtraLoadouts.GUI.DisabledButOccupied");
@@ -102,9 +100,9 @@ namespace ExtraLoadouts.GUI {
             Player player = Main.LocalPlayer;
             LoadoutPlayer modPlayer = player.GetModPlayer<LoadoutPlayer>();
 
-            LoadoutStatus[] statuses = new LoadoutStatus[ExtraLoadoutsMod.MAX_EXTRA_LOADOUTS];
+            LoadoutStatus[] statuses = new LoadoutStatus[ExtraLoadoutsMod.EXTRA_LOADOUTS];
 
-            for (int i = 0; i < ExtraLoadoutsMod.MAX_EXTRA_LOADOUTS; i++) {
+            for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
                 EquipmentLoadout loadout = modPlayer.ExLoadouts[i];
 
                 if (i < ModContent.GetInstance<LoadoutsConfig>().ExtraLoadouts) {

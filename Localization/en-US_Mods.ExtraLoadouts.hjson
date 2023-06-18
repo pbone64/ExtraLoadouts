@@ -16,6 +16,76 @@ GUI: {
 	DisabledButOccupied:
 		'''
 		This layout was disabled in the mod's config but it still contains items!
-		It will remain accessible until all items are removed from it
+		It will remain accessible until all items are removed from it.
 		'''
+}
+
+RecipeConditions: {
+	ExtraLoadoutVoodooDoll1: At least one extra slot must be enabled in Extended Equipment Loadouts config
+	ExtraLoadoutVoodooDoll2: At least two extra slot must be enabled in Extended Equipment Loadouts config
+	ExtraLoadoutVoodooDoll3: At least three extra slot must be enabled in Extended Equipment Loadouts config
+}
+
+CommonItemTooltips.LoadoutVoodooDollCurrentlyCopying: Currently Copying: {0}
+
+Items: {
+	LoadoutVoodooDoll1: {
+		DisplayName: Loadout Voodoo Doll 1
+		Tooltip:
+			'''
+			Copies the effect of the accessory in the same slot in loadout 1
+			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy other Loadout Voodoo Dolls
+			'''
+	}
+
+	LoadoutVoodooDoll2: {
+		DisplayName: Loadout Voodoo Doll 2
+		Tooltip:
+			'''
+			Copies the effect of the accessory in the same slot in loadout 2
+			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy other Loadout Voodoo Dolls
+			'''
+	}
+
+	LoadoutVoodooDoll3: {
+		DisplayName: Loadout Voodoo Doll 3
+		Tooltip:
+			'''
+			Copies the effect of the accessory in the same slot in loadout 3
+			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy other Loadout Voodoo Dolls
+			'''
+	}
+
+	LoadoutVoodooDoll4: {
+		DisplayName: Loadout Voodoo Doll 4
+		Tooltip:
+			'''
+			Copies the effect of the accessory in the same slot in loadout 4
+			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy other Loadout Voodoo Dolls
+			'''
+	}
+
+	LoadoutVoodooDoll5: {
+		DisplayName: Loadout Voodoo Doll 5
+		Tooltip:
+			'''
+			Copies the effect of the accessory in the same slot in loadout 5
+			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy other Loadout Voodoo Dolls
+			'''
+	}
+
+	LoadoutVoodooDoll6: {
+		DisplayName: Loadout Voodoo Doll 6
+		Tooltip:
+			'''
+			Copies the effect of the accessory in the same slot in loadout 6
+			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy other Loadout Voodoo Dolls
+			'''
+	}
 }
