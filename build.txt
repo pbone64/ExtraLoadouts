@@ -1,6 +1,6 @@
 displayName = Extended Equipment Loadouts
 author = pbone
-version = 1.1.0
+version = 1.1.2
 homepage = https://github.com/Pbone3/ExtraLoadouts
 hideCode = false
 hideResources = false

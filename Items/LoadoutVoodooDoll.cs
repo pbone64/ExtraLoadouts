@@ -127,7 +127,7 @@ namespace ExtraLoadouts.Items {
         }
 
         private string GetCopiedItemText() {
-            string text = "Nothing";
+            string text = Language.GetTextValue("Mods.ExtraLoadouts.Misc.LoadoutVoodooDollCopyingNothing");
 
             Item itemToCopy = GetItemToCopy(Main.LocalPlayer, out int slot);
             if (itemToCopy is null || CanTakeEffect(Main.LocalPlayer, itemToCopy, slot) != CanTakeEffectStatus.CanBeEquipped) {
@@ -168,7 +168,7 @@ namespace ExtraLoadouts.Items {
         private bool IsPlayerCurrentlyOnMyLoadout(Player player) {
             return Extra ?
                 player.GetModPlayer<LoadoutPlayer>().CurrentExLoadoutIndex == Index :
-                player.CurrentLoadoutIndex == Index;
+                player.GetModPlayer<LoadoutPlayer>().CurrentExLoadoutIndex == -1 && player.CurrentLoadoutIndex == Index;
         }
     }
 }
