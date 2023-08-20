@@ -1,9 +1,13 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace ExtraLoadouts {
     public sealed class EquipmentLoadoutSerializer : TagSerializer<EquipmentLoadout, TagCompound> {
+        public const int SerializerVersion = 2;
+
         public override TagCompound Serialize(EquipmentLoadout value) {
             TagCompound tag = new();
 
@@ -23,48 +27,15 @@ namespace ExtraLoadouts {
         private void SerializeItemArray(TagCompound tag, Item[] items) {
             tag.Add(nameof(Array.Length), items.Length);
             for (int i = 0; i < items.Length; i++) {
-                TagCompound itemTag = new();
-                SerializeItem(itemTag, items[i]);
-                tag.Add(nameof(Item) + i, itemTag);
+                tag.Add(nameof(Item) + i, SerializeItem(items[i]));
             }
         }
 
-        private void SerializeItem(TagCompound tag, Item item) {
-            tag.Add(nameof(Item.netID), item.netID);
-            tag.Add(nameof(Item.stack), item.stack);
-            tag.Add(nameof(Item.prefix), item.prefix);
-
-            if (item.ModItem is not null) {
-                TagCompound modData = new();
-                item.ModItem.SaveData(modData);
-                tag.Add("ModData", modData);
-            }
-        }
-
-        private Item DeserializeItem(TagCompound tag) {
-            int netId = tag.GetInt(nameof(Item.netID));
-            int stack = tag.GetInt(nameof(Item.stack));
-            int prefix = tag.GetInt(nameof(Item.prefix));
-
-            Item item = new(netId, stack, prefix);
-
-            if (tag.TryGet("ModData", out TagCompound modData)) {
-                item.ModItem?.LoadData(modData);
-            }
-
-            return item;
-        }
-
-        private Item[] DeserializeItemArray(TagCompound tag) {
-            int length = tag.GetInt(nameof(Array.Length));
-
-            Item[] items = new Item[length];
-
-            for (int i = 0; i < items.Length; i++) {
-                items[i] = DeserializeItem(tag.Get<TagCompound>(nameof(Item) + i));
-            }
-
-            return items;
+        private TagCompound SerializeItem(Item item) {
+            return new() {
+                { nameof(Item), ItemIO.Save(item) },
+                { nameof(SerializerVersion), SerializerVersion },
+            };
         }
 
         public override EquipmentLoadout Deserialize(TagCompound tag) {
@@ -80,6 +51,50 @@ namespace ExtraLoadouts {
             loadout.Hide = hide;
 
             return loadout;
+        }
+
+        private Item[] DeserializeItemArray(TagCompound tag) {
+            int length = tag.GetInt(nameof(Array.Length));
+
+            Item[] items = new Item[length];
+
+            for (int i = 0; i < items.Length; i++) {
+                TagCompound itemTag = tag.Get<TagCompound>(nameof(Item) + 1);
+                int version = 1;
+                if (itemTag.ContainsKey(nameof(SerializerVersion))) {
+                    version = itemTag.GetInt(nameof(SerializerVersion));
+                }
+
+                switch (version) {
+                    case 1:
+                        items[i] = DeserializeItem_1(itemTag);
+                        break;
+                    case 2:
+                        items[i] = DeserializeItem_2(itemTag);
+                        break;
+                }
+
+            }
+
+            return items;
+        }
+
+        private Item DeserializeItem_1(TagCompound tag) {
+            int netId = tag.GetInt(nameof(Item.netID));
+            int stack = tag.GetInt(nameof(Item.stack));
+            int prefix = tag.GetInt(nameof(Item.prefix));
+
+            Item item = new(netId, stack, prefix);
+
+            if (tag.TryGet("ModData", out TagCompound modData)) {
+                item.ModItem?.LoadData(modData);
+            }
+
+            return item;
+        }
+
+        private Item DeserializeItem_2(TagCompound tag) {
+            return ItemIO.Load(tag.Get<TagCompound>(nameof(Item)));
         }
     }
 }

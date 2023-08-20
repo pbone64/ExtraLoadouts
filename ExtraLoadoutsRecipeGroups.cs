@@ -6,7 +6,7 @@ using Terraria.Localization;
 namespace ExtraLoadouts {
     public class ExtraLoadoutsRecipeGroups : ModSystem {
         public const string AnyGoldBar = "ExtraLoadouts:AnyGoldBar";
-        public const string AnyDemoniteBar = "ExtraLoadouts:AnyDemoniteBar",;
+        public const string AnyDemoniteBar = "ExtraLoadouts:AnyDemoniteBar";
         public const string AnyShadowScale = "ExtraLoadouts:AnyShadowScale";
         public const string AnySoul = "ExtraLoadouts:AnySoul";
 
