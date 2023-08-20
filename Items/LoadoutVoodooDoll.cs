@@ -119,7 +119,7 @@ namespace ExtraLoadouts.Items {
                 .AddTile(TileID.DemonAltar);
 
             if (Extra) {
-                recipe.AddCondition(Language.GetText("Mods.ExtraLoadouts.RecipeConditions.ExtraLoadoutVoodooDoll" + Index),
+                recipe.AddCondition(Language.GetText("Mods.ExtraLoadouts.RecipeConditions.ExtraLoadoutVoodooDoll" + (Index + 1)),
                     () => Index < ModContent.GetInstance<LoadoutsConfig>().ExtraLoadouts);
             }
 
