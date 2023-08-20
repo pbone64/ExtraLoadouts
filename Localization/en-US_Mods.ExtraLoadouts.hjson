@@ -113,6 +113,6 @@ Misc.LoadoutVoodooDollCopyingNothing: Nothing
 RecipeGroup: {
 	AnyGoldBar: Any Gold Bar
 	AnyDemoniteBar: Any Demonite Bar
-	AnyShadowScale: Any Shadow Scale
+	AnyShadowScale: Shadow Scale or Tissue Sample
 	AnySoul: Any Soul
 }

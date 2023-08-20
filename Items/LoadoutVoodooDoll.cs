@@ -143,16 +143,16 @@ namespace ExtraLoadouts.Items {
                     break;
 
                 case DollsMaterial.AnyGoldBar:
-                    recipe.AddRecipeGroup("ExtraLoadouts:AnyGoldBar", 2);
+                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyGoldBar, 2);
                     break;
                 case DollsMaterial.AnyDemoniteBar:
-                    recipe.AddRecipeGroup("ExtraLoadouts:AnyDemoniteBar", 2);
+                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyDemoniteBar, 2);
                     break;
                 case DollsMaterial.AnyShadowScale:
-                    recipe.AddRecipeGroup("ExtraLoadouts:AnyShadowScale", 2);
+                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyShadowScale, 2);
                     break;
                 case DollsMaterial.AnySoul:
-                    recipe.AddRecipeGroup("ExtraLoadouts:AnySoul", 2);
+                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnySoul, 2);
                     break;
             }
 
