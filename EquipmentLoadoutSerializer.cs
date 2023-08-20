@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace ExtraLoadouts {
-    internal sealed class EquipmentLoadoutSerializer : TagSerializer<EquipmentLoadout, TagCompound> {
+    public sealed class EquipmentLoadoutSerializer : TagSerializer<EquipmentLoadout, TagCompound> {
         public override TagCompound Serialize(EquipmentLoadout value) {
             TagCompound tag = new();
 

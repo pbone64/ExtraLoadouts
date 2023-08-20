@@ -5,10 +5,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExtraLoadouts {
-    internal static class LoadoutSyncing {
-        internal const byte SyncLoadoutId = 0;
+    public static class LoadoutSyncing {
+        public const byte SyncLoadoutId = 0;
 
-        internal static void SyncExLoadout(Player player, int exLoadoutIndex, int toPlayer, int fromPlayer) {
+        public static void SyncExLoadout(Player player, int exLoadoutIndex, int toPlayer, int fromPlayer) {
             if (Main.netMode == NetmodeID.SinglePlayer) {
                 return;
             }
@@ -67,7 +67,7 @@ namespace ExtraLoadouts {
             }
         }
 
-        internal static void HandlePacket(BinaryReader reader) {
+        public static void HandlePacket(BinaryReader reader) {
             byte id = reader.ReadByte();
             switch (id) {
                 case SyncLoadoutId:

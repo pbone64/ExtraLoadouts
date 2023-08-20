@@ -15,8 +15,8 @@ using static ExtraLoadouts.LoadoutsConfig;
 
 namespace ExtraLoadouts.Items {
     [Autoload(false)]
-    internal sealed class LoadoutVoodooDoll : ModItem {
-        internal sealed class LoadoutVoodooDollLoader : ILoadable {
+    public sealed class LoadoutVoodooDoll : ModItem {
+        public sealed class LoadoutVoodooDollLoader : ILoadable {
             void ILoadable.Load(Mod mod) {
                 for (int i = 0; i < ExtraLoadoutsMod.VANILLA_LOADOUTS; i++) {
                     mod.AddContent(NewDoll(false, i));
@@ -46,11 +46,11 @@ namespace ExtraLoadouts.Items {
             IsLikelyNone,
         }
 
-        internal bool Extra;
-        internal int Index;
-        internal Guid Guid;
+        public bool Extra;
+        public int Index;
+        public Guid Guid;
 
-        internal int LoadoutNumber => (Extra ? 4 : 1) + Index;
+        public int LoadoutNumber => (Extra ? 4 : 1) + Index;
 
         public override string Name => "LoadoutVoodooDoll" + LoadoutNumber;
 

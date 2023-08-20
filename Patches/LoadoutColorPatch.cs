@@ -4,8 +4,8 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ExtraLoadouts.Patches {
-    internal sealed class LoadoutColorPatch : BasePatch {
-        internal override void Patch(Mod mod) {
+    public sealed class LoadoutColorPatch : BasePatch {
+        public override void Patch(Mod mod) {
             On_ItemSlot.TryGetSlotColor += On_ItemSlot_TryGetSlotColor;
         }
 

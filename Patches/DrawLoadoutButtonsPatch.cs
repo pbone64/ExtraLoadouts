@@ -7,8 +7,8 @@ using System;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace ExtraLoadouts.Patches {
-    internal sealed class DrawLoadoutButtonsPatch : BasePatch {
-        internal override void Patch(Mod mod) {
+    public sealed class DrawLoadoutButtonsPatch : BasePatch {
+        public override void Patch(Mod mod) {
             On_Main.DrawLoadoutButtons += On_Main_DrawLoadoutButtons;
             IL_Main.DrawLoadoutButtons += IL_Main_DrawLoadoutButtons;
         }

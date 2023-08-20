@@ -7,14 +7,14 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ExtraLoadouts.GUI {
-    internal class ExLoadoutButtons : ILoadable {
+    public class ExLoadoutButtons : ILoadable {
         private enum LoadoutStatus {
             Enabled,
             DisabledButOccupied,
             Disabled
         }
 
-        internal static Asset<Texture2D> LoadoutButtonsTexture = null;
+        public static Asset<Texture2D> LoadoutButtonsTexture = null;
 
         void ILoadable.Load(Mod mod) {
             if (!Main.dedServ) {
@@ -22,7 +22,7 @@ namespace ExtraLoadouts.GUI {
             }
         }
 
-        internal static void DrawLoadoutButtons(int inventoryTop, bool demonHeartSlotAvailable, bool masterModeSlotAvailable) {
+        public static void DrawLoadoutButtons(int inventoryTop, bool demonHeartSlotAvailable, bool masterModeSlotAvailable) {
             Player player = Main.LocalPlayer;
             LoadoutPlayer modPlayer = player.GetModPlayer<LoadoutPlayer>();
 

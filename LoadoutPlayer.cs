@@ -7,16 +7,16 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace ExtraLoadouts {
-    internal sealed class LoadoutPlayer : ModPlayer {
-        internal EquipmentLoadout CurrentExLoadout => ExLoadouts[CurrentExLoadoutIndex];
+    public sealed class LoadoutPlayer : ModPlayer {
+        public EquipmentLoadout CurrentExLoadout => ExLoadouts[CurrentExLoadoutIndex];
 
-        internal readonly EquipmentLoadout[] ExLoadouts = new EquipmentLoadout[ExtraLoadoutsMod.EXTRA_LOADOUTS] {
+        public readonly EquipmentLoadout[] ExLoadouts = new EquipmentLoadout[ExtraLoadoutsMod.EXTRA_LOADOUTS] {
             new(),
             new(),
             new(),
         };
 
-        internal int CurrentExLoadoutIndex { get; set; }
+        public int CurrentExLoadoutIndex { get; set; }
 
         public override void Initialize() {
             CurrentExLoadoutIndex = -1;
@@ -50,7 +50,7 @@ namespace ExtraLoadouts {
             }
         }
 
-        internal void TrySwitchingVanillaToEx(int exLoadoutIndex) {
+        public void TrySwitchingVanillaToEx(int exLoadoutIndex) {
             if (IsPlayerReadyToSwitchLoadouts() && IsExLoadoutIndexValid(exLoadoutIndex)) {
                 Player.Loadouts[Player.CurrentLoadoutIndex].Swap(Player);
                 ExLoadouts[exLoadoutIndex].Swap(Player);
@@ -78,7 +78,7 @@ namespace ExtraLoadouts {
             }
         }
 
-        internal void TrySwitchingExToEx(int exLoadoutIndex) {
+        public void TrySwitchingExToEx(int exLoadoutIndex) {
             if (IsPlayerReadyToSwitchLoadouts() && IsExLoadoutIndexValid(exLoadoutIndex)) {
                 ExLoadouts[CurrentExLoadoutIndex].Swap(Player);
                 ExLoadouts[exLoadoutIndex].Swap(Player);
@@ -115,7 +115,7 @@ namespace ExtraLoadouts {
             return Player.itemTime > 0 || Player.itemAnimation > 0;
         }
 
-        internal void ClearExForVanilla() {
+        public void ClearExForVanilla() {
             CurrentExLoadout.Swap(Player);
             CurrentExLoadoutIndex = -1;
         }

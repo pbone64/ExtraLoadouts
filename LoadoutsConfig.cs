@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace ExtraLoadouts {
-    internal sealed class LoadoutsConfig : ModConfig {
+    public sealed class LoadoutsConfig : ModConfig {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         [Slider]

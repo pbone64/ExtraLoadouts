@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ExtraLoadouts.Patches {
-    internal sealed class AccCheckPatch : BasePatch {
-        internal override void Patch(Mod mod) {
+    public sealed class AccCheckPatch : BasePatch {
+        public override void Patch(Mod mod) {
             IL_ItemSlot.AccCheck_ForLocalPlayer += IL_ItemSlot_AccCheck_ForLocalPlayer;
         }
 
