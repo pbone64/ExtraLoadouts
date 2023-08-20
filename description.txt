@@ -5,3 +5,5 @@ Various improvements to vanilla's loadout system.
 Note: Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
 
 Links to a GitHub and Discord can be found on the workshop page.
+
+Special thanks to eugine1beetle for reporting multiple major bugs and contributing improvements!

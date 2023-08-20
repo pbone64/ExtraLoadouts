@@ -8,6 +8,8 @@
 
 [b]Note:[/b] Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
 
+Special thanks to eugine1beetle for reporting multiple major bugs and contributing improvements!
+
 [h1]Links[/h1]
 [list]
  [*] GitHub: https://github.com/Pbone3/ExtraLoadouts
