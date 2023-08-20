@@ -12,12 +12,12 @@ namespace ExtraLoadouts {
         public int ExtraLoadouts;
 
         public enum DollsMaterial {
-            Bone,
             FallenStar,
             AnyGoldBar,
             AnyDemoniteBar,
             AnyShadowScale,
             BeeWax,
+            Bone,
             AnySoul,
             HallowedBar,
             ChlorophyteBar,
