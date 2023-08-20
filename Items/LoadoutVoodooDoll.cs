@@ -11,6 +11,8 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
 
+using static ExtraLoadouts.LoadoutsConfig;
+
 namespace ExtraLoadouts.Items {
     [Autoload(false)]
     internal sealed class LoadoutVoodooDoll : ModItem {
@@ -115,8 +117,44 @@ namespace ExtraLoadouts.Items {
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe()
                 .AddIngredient(ItemID.Silk, 3)
-                .AddIngredient(ItemID.Bone, 2)
                 .AddTile(TileID.DemonAltar);
+
+            DollsMaterial material = ModContent.GetInstance<LoadoutsConfig>().DollsSecondaryMaterial;
+
+            switch (material) {
+                case DollsMaterial.FallenStar:
+                    recipe.AddIngredient(ItemID.FallenStar, 2);
+                    break;
+
+                case DollsMaterial.BeeWax:
+                    recipe.AddIngredient(ItemID.BeeWax, 2);
+                    break;
+
+                case DollsMaterial.Bone:
+                    recipe.AddIngredient(ItemID.Bone, 2);
+                    break;
+
+                case DollsMaterial.HallowedBar:
+                    recipe.AddIngredient(ItemID.HallowedBar, 2);
+                    break;
+
+                case DollsMaterial.ChlorophyteBar:
+                    recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
+                    break;
+
+                case DollsMaterial.GoldBar:
+                    recipe.AddRecipeGroup("ExtraLoadouts:AnyGoldBar", 2);
+                    break;
+                case DollsMaterial.DemoniteBar:
+                    recipe.AddRecipeGroup("ExtraLoadouts:AnyDemoniteBar", 2);
+                    break;
+                case DollsMaterial.ShadowScale:
+                    recipe.AddRecipeGroup("ExtraLoadouts:AnyShadowScale", 2);
+                    break;
+                case DollsMaterial.Souls:
+                    recipe.AddRecipeGroup("ExtraLoadouts:AnySoul", 2);
+                    break;
+            }
 
             if (Extra) {
                 recipe.AddCondition(Language.GetText("Mods.ExtraLoadouts.RecipeConditions.ExtraLoadoutVoodooDoll" + Index),
