@@ -16,12 +16,12 @@ Configs: {
 	DollsMaterial: {
 		Tooltip: ""
 		FallenStar.Label: Fallen Star
-		GoldBar.Label: Gold or Platinum bar
-		DemoniteBar.Label: Demonite or Crimtane bar
-		ShadowScale.Label: Shadow Scale or Tissue Sample
+		AnyGoldBar.Label: Gold or Platinum bar
+		AnyDemoniteBar.Label: Demonite or Crimtane bar
+		AnyShadowScale.Label: Shadow Scale or Tissue Sample
 		BeeWax.Label: Bee Wax
 		Bone.Label: Bone
-		Souls.Label: Any Soul
+		AnySoul.Label: Any Soul
 		HallowedBar.Label: Hallowed Bar
 		ChlorophyteBar.Label: Chlorophyte Bar
 	}

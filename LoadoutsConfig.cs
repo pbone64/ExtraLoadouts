@@ -11,15 +11,14 @@ namespace ExtraLoadouts {
         [DefaultValue(ExtraLoadoutsMod.EXTRA_LOADOUTS)]
         public int ExtraLoadouts;
 
-        public enum DollsMaterial
-        {
+        public enum DollsMaterial {
             FallenStar,
-            GoldBar, // or platinum
-            DemoniteBar, // or crimtane
-            ShadowScale, // or tissue sample
+            AnyGoldBar,
+            AnyDemoniteBar,
+            AnyShadowScale,
             BeeWax,
             Bone,
-            Souls,
+            AnySoul,
             HallowedBar,
             ChlorophyteBar,
         }

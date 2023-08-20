@@ -142,16 +142,16 @@ namespace ExtraLoadouts.Items {
                     recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
                     break;
 
-                case DollsMaterial.GoldBar:
+                case DollsMaterial.AnyGoldBar:
                     recipe.AddRecipeGroup("ExtraLoadouts:AnyGoldBar", 2);
                     break;
-                case DollsMaterial.DemoniteBar:
+                case DollsMaterial.AnyDemoniteBar:
                     recipe.AddRecipeGroup("ExtraLoadouts:AnyDemoniteBar", 2);
                     break;
-                case DollsMaterial.ShadowScale:
+                case DollsMaterial.AnyShadowScale:
                     recipe.AddRecipeGroup("ExtraLoadouts:AnyShadowScale", 2);
                     break;
-                case DollsMaterial.Souls:
+                case DollsMaterial.AnySoul:
                     recipe.AddRecipeGroup("ExtraLoadouts:AnySoul", 2);
                     break;
             }
