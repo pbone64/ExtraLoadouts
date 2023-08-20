@@ -6,6 +6,24 @@ Configs: {
 			Label: Extra Loadouts
 			Tooltip: How many extra loadouts you can access.
 		}
+
+		DollsSecondaryMaterial: {
+			Label: Dolls Secondary Material
+			Tooltip: ""
+		}
+	}
+
+	DollsMaterial: {
+		Tooltip: ""
+		FallenStar.Label: Fallen Star
+		AnyGoldBar.Label: Gold or Platinum bar
+		AnyDemoniteBar.Label: Demonite or Crimtane bar
+		AnyShadowScale.Label: Shadow Scale or Tissue Sample
+		BeeWax.Label: Bee Wax
+		Bone.Label: Bone
+		AnySoul.Label: Any Soul
+		HallowedBar.Label: Hallowed Bar
+		ChlorophyteBar.Label: Chlorophyte Bar
 	}
 }
 
@@ -91,3 +109,10 @@ Items: {
 }
 
 Misc.LoadoutVoodooDollCopyingNothing: Nothing
+
+RecipeGroup: {
+	AnyGoldBar: Any Gold Bar
+	AnyDemoniteBar: Any Demonite Bar
+	AnyShadowScale: Any Shadow Scale
+	AnySoul: Any Soul
+}
