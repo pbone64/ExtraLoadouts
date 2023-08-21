@@ -57,7 +57,7 @@ namespace ExtraLoadouts {
             Item[] items = new Item[length];
 
             for (int i = 0; i < items.Length; i++) {
-                TagCompound itemTag = tag.Get<TagCompound>(nameof(Item) + 1);
+                TagCompound itemTag = tag.Get<TagCompound>(nameof(Item) + i);
                 int version = 1;
                 if (itemTag.ContainsKey(nameof(SerializerVersion))) {
                     version = itemTag.GetInt(nameof(SerializerVersion));
