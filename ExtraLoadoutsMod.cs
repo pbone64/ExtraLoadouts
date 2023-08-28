@@ -27,5 +27,9 @@ namespace ExtraLoadouts {
         public override void HandlePacket(BinaryReader reader, int whoAmI) {
             LoadoutSyncing.HandlePacket(reader);
         }
+
+        public static int LoadoutNumber(int loadoutIndex, bool ex) {
+            return loadoutIndex + 1 + (ex ? VANILLA_LOADOUTS : 0);
+        }
     }
 }

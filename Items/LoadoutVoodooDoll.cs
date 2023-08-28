@@ -114,6 +114,16 @@ namespace ExtraLoadouts.Items {
             ItemSlot.DrawItemIcon(itemToCopy, 10, spriteBatch, position, Main.inventoryScale, 32f, Color.White * (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 1.5f);
         }
 
+        public override ModItem Clone(Item newEntity) {
+            // Fun fact: Recipe stores an instance of it's output item and clones it!
+            // To give each crafted doll a unique guid, we need to return a new
+            // instance of the doll instead of relying on NewInstance running.
+            // In practice this _probably shouldn't_ cause any issues because
+            // Guid is the only field re-assigned in NewInstance and it
+            // changing _shouldn't_ break anything. Enjoy the bandaid fix!!!!!
+            return NewInstance(newEntity);
+        }
+
         public override void AddRecipes() {
             Recipe recipe = CreateRecipe()
                 .AddIngredient(ItemID.Silk, 3)

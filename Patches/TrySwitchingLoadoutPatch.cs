@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace ExtraLoadouts.Patches {
-    public sealed class TrySwitchingLayoutPatch : BasePatch {
+    public sealed class TrySwitchingLoadoutPatch : BasePatch {
         public override void Patch(Mod mod) {
             IL_Player.TrySwitchingLoadout += IL_Player_TrySwitchingLoadout;
         }

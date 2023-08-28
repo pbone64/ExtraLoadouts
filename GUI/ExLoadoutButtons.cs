@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExtraLoadouts.GUI {
     public class ExLoadoutButtons : ILoadable {
-        private enum LoadoutStatus {
+        public enum LoadoutStatus {
             Enabled,
             DisabledButOccupied,
             Disabled
@@ -63,13 +63,7 @@ namespace ExtraLoadouts.GUI {
                     }
 
                     if (Main.mouseLeft && Main.mouseLeftRelease) {
-                        if (modPlayer.CurrentExLoadoutIndex < 0) {
-                            // We're on a vanilla layout currently
-                            modPlayer.TrySwitchingVanillaToEx(i);
-                        } else {
-                            // We're already on a modded layout
-                            modPlayer.TrySwitchingExToEx(i);
-                        }
+                        modPlayer.TrySwitchToExLoadout(i);
                     }
                 }
 
@@ -96,7 +90,7 @@ namespace ExtraLoadouts.GUI {
             }
         }
 
-        private static LoadoutStatus[] GetLoadoutStatuses() {
+        public static LoadoutStatus[] GetLoadoutStatuses() {
             Player player = Main.LocalPlayer;
             LoadoutPlayer modPlayer = player.GetModPlayer<LoadoutPlayer>();
 

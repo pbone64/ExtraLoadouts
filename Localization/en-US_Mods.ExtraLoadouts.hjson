@@ -116,3 +116,9 @@ RecipeGroup: {
 	AnyShadowScale: Shadow Scale or Tissue Sample
 	AnySoul: Any Soul
 }
+
+Keybinds: {
+	SwapToLoadout4.DisplayName: Loadout 4
+	SwapToLoadout5.DisplayName: Loadout 5
+	SwapToLoadout6.DisplayName: Loadout 6
+}

@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using ExtraLoadouts.GUI;
+using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -47,6 +49,16 @@ namespace ExtraLoadouts {
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
             for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
                 LoadoutSyncing.SyncExLoadout(Player, i, toWho, fromWho);
+            }
+        }
+
+        public override void ProcessTriggers(TriggersSet triggersSet) {
+            for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
+                if (ModContent.GetInstance<LoadoutKeybinds>().ExLoadoutKeybinds[i].JustPressed) {
+                    if (i < ModContent.GetInstance<LoadoutsConfig>().ExtraLoadouts) {
+                        TrySwitchToExLoadout(i);
+                    }
+                }
             }
         }
 
@@ -100,6 +112,17 @@ namespace ExtraLoadouts {
 
                     ItemSlot.RecordLoadoutChange();
                 }
+            }
+        }
+
+        public void TrySwitchToExLoadout(int exLoadoutIndex) {
+            if (CurrentExLoadoutIndex < 0) {
+                // We're on a vanilla layout currently
+                TrySwitchingVanillaToEx(exLoadoutIndex);
+            }
+            else {
+                // We're already on a modded layout
+                TrySwitchingExToEx(exLoadoutIndex);
             }
         }
 
