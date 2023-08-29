@@ -1,5 +1,4 @@
-﻿using ExtraLoadouts.GUI;
-using Terraria;
+﻿using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;
 using Terraria.GameInput;
