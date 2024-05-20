@@ -12,6 +12,6 @@ Special thanks to eugine1beetle for reporting multiple major bugs and contributi
 
 [h1]Links[/h1]
 [list]
- [*] GitHub: https://github.com/Pbone3/ExtraLoadouts
+ [*] GitHub: https://github.com/pbone64/ExtraLoadouts
  [*] Discord: https://discord.gg/TRJqeq3Acm
 [/list]
