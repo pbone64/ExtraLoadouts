@@ -29,9 +29,9 @@ namespace ExtraLoadouts.Patches {
             c.EmitDelegate<Func<int, Player, int>>((loadoutIndex, player) => {
                 // If we're on a modded loadout...
                 if (player.GetModPlayer<LoadoutPlayer>().CurrentExLoadoutIndex >= 0) {
-                    // Return 22. 22 will never equal the current loadout index,
-                    // so the if clause that checks whether we're trying to switch
-                    // to the current loadout will never cause us to return
+                    // 22 will never equal the current loadout index,
+                    // so the clause that checks whether we're trying to switch
+                    // to the current loadout will never evaluate to true
                     return 22;
                 }
 

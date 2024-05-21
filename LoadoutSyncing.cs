@@ -8,13 +8,15 @@ namespace ExtraLoadouts {
     public static class LoadoutSyncing {
         public const byte SyncLoadoutId = 0;
 
-        public static void SyncExLoadout(Player player, int exLoadoutIndex, int toPlayer, int fromPlayer) {
+        [Obsolete("")]
+        public static void SyncExLoadout(Player player, int exLoadoutIndex, int remoteClient, int ignoreClient) {
             if (Main.netMode == NetmodeID.SinglePlayer) {
                 return;
             }
 
             ModPacket packet = ModContent.GetInstance<ExtraLoadoutsMod>().GetPacket();
             packet.Write(SyncLoadoutId);
+
             packet.Write((byte)player.whoAmI);
             packet.Write((byte)exLoadoutIndex);
 
@@ -26,7 +28,7 @@ namespace ExtraLoadouts {
                 packet.Write(exLoadout.Hide[i]);
             }
 
-            packet.Send(toPlayer, fromPlayer);
+            packet.Send(remoteClient, ignoreClient);
         }
 
         private static void SendLoadoutItemArray(ModPacket packet, Item[] arr) {
@@ -50,6 +52,19 @@ namespace ExtraLoadouts {
             packet.Write((short)item.prefix);
         }
 
+        private static void SyncExLoadout_Read(BinaryReader reader) {
+            byte whoAmI = reader.ReadByte();
+            byte exLoadoutIndex = reader.ReadByte();
+
+            EquipmentLoadout exLoadout = Main.player[whoAmI].GetModPlayer<LoadoutPlayer>().ExLoadouts[exLoadoutIndex];
+            ReadLoadoutItemArray(reader, exLoadout.Armor);
+            ReadLoadoutItemArray(reader, exLoadout.Dye);
+
+            for (int i = 0; i < exLoadout.Hide.Length; i++) {
+                exLoadout.Hide[i] = reader.ReadBoolean();
+            }
+        }
+
         private static void ReadLoadoutItem(BinaryReader reader, Item[] intoArr) {
             byte index = reader.ReadByte();
             short stack = reader.ReadInt16();
@@ -67,21 +82,49 @@ namespace ExtraLoadouts {
             }
         }
 
+        public const byte SyncExLoadoutSelectionId = 1;
+
+        public static void SyncExLoadoutSelection(Player player, int exLoadout, bool set, int remoteClient, int ignoreClient) {
+            if (Main.netMode == NetmodeID.SinglePlayer) {
+                return;
+            }
+
+            ModPacket packet = ModContent.GetInstance<ExtraLoadoutsMod>().GetPacket();
+            packet.Write(SyncExLoadoutSelectionId);
+
+            packet.Write((byte)player.whoAmI);
+            packet.Write((sbyte)exLoadout);
+            packet.Write(set);
+
+            packet.Send(remoteClient, ignoreClient);
+        }
+
+        private static void SyncExLoadoutSelection_Read(BinaryReader reader) {
+            byte whoAmI = reader.ReadByte();
+            sbyte exLoadoutIndex = reader.ReadSByte();
+            bool set = reader.ReadBoolean();
+
+            Player player = Main.player[whoAmI];
+            LoadoutPlayer modPlayer = player.GetModPlayer<LoadoutPlayer>();
+
+            if (exLoadoutIndex >= 0 && set) {
+                modPlayer.TrySwitchToExLoadout(exLoadoutIndex);
+            }
+
+            if (Main.netMode == NetmodeID.Server) {
+                SyncExLoadoutSelection(player, modPlayer.CurrentExLoadoutIndex, set, -1, whoAmI);
+            }
+        }
+
         public static void HandlePacket(BinaryReader reader) {
             byte id = reader.ReadByte();
             switch (id) {
                 case SyncLoadoutId:
-                    byte whoAmI = reader.ReadByte();
-                    byte exLoadoutIndex = reader.ReadByte();
+                    SyncExLoadout_Read(reader);
+                    break;
 
-                    EquipmentLoadout exLoadout = Main.player[whoAmI].GetModPlayer<LoadoutPlayer>().ExLoadouts[exLoadoutIndex];
-                    ReadLoadoutItemArray(reader, exLoadout.Armor);
-                    ReadLoadoutItemArray(reader, exLoadout.Dye);
-
-                    for (int i = 0; i < exLoadout.Hide.Length; i++) {
-                        exLoadout.Hide[i] = reader.ReadBoolean();
-                    }
-
+                case SyncExLoadoutSelectionId:
+                    SyncExLoadoutSelection_Read(reader);
                     break;
             }
         }
