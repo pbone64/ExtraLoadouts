@@ -14,8 +14,8 @@ namespace ExtraLoadouts.GUI {
             Hide
         }
 
-        public const int LoadoutButtons_HoriFrames = 4;
-        public const int LoadoutButtons_VertiFrames = ExtraLoadoutsMod.EXTRA_LOADOUTS;
+        public const int LoadoutButtons_XFrames = 4;
+        public const int LoadoutButtons_YFrames = ExtraLoadoutsMod.EXTRA_LOADOUTS;
         public static Asset<Texture2D> LoadoutButtonsTexture = null;
 
         void ILoadable.Load(Mod mod) {
@@ -48,7 +48,7 @@ namespace ExtraLoadouts.GUI {
             Rectangle[] buttonHitboxes = new Rectangle[ExtraLoadoutsMod.EXTRA_LOADOUTS];
 
             Rectangle warningFrame = LoadoutButtonsTexture.Frame(
-                LoadoutButtons_HoriFrames, LoadoutButtons_VertiFrames,
+                LoadoutButtons_XFrames, LoadoutButtons_YFrames,
                 3, 0
             );
 
@@ -163,17 +163,17 @@ namespace ExtraLoadouts.GUI {
 
         public static void GetLoadoutFrames(int loadout, out Rectangle inactive, out Rectangle active, out Rectangle outline) {
             inactive = LoadoutButtonsTexture.Frame(
-                LoadoutButtons_HoriFrames, LoadoutButtons_VertiFrames,
+                LoadoutButtons_XFrames, LoadoutButtons_YFrames,
                 0, loadout
             );
 
             active = LoadoutButtonsTexture.Frame(
-                LoadoutButtons_HoriFrames, LoadoutButtons_VertiFrames,
+                LoadoutButtons_XFrames, LoadoutButtons_YFrames,
                 1, loadout
             );
 
             outline = LoadoutButtonsTexture.Frame(
-                LoadoutButtons_HoriFrames, LoadoutButtons_VertiFrames,
+                LoadoutButtons_XFrames, LoadoutButtons_YFrames,
                 2, loadout
             );
         }

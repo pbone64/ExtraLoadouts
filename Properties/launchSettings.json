@@ -11,6 +11,12 @@
       "executablePath": "dotnet",
       "commandLineArgs": "$(tMLServerPath)",
       "workingDirectory": "$(tMLSteamPath)"
+    },
+    "RiderLinuxBuild": {
+      "commandName": "Executable",
+      "executablePath": "$(tMLSteamPath)/$(tMLPath)",
+      "commandLineArgs": "$(tMLPath)",
+      "workingDirectory": "$(tMLSteamPath)"
     }
   }
 }

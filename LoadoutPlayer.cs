@@ -15,11 +15,15 @@ namespace ExtraLoadouts {
     public sealed class LoadoutPlayer : ModPlayer {
         public EquipmentLoadout CurrentExLoadout => ExLoadouts[CurrentExLoadoutIndex];
 
-        public readonly EquipmentLoadout[] ExLoadouts = [
+        public readonly EquipmentLoadout[] ExLoadouts = new EquipmentLoadout[ExtraLoadoutsMod.EXTRA_LOADOUTS]
+        {
             new(),
             new(),
             new(),
-        ];
+            new(),
+            new(),
+            new(),
+        };
 
         public int CurrentExLoadoutIndex { get; set; }
 
