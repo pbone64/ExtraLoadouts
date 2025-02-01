@@ -1,6 +1,6 @@
 Various improvements to vanilla's loadout system.
-- Adds up to 3 more loadout slots (amount can be configured).
-- Adds items that let you copy accessories equipped in other loadouts.
+- Adds up to 6 more loadout slots (amount can be configured).
+- Adds items that let you copy accessories equipped in other loadouts (known as Loadout Voodoo Dolls; search for them in Recipe Browser).
 
 Note: Make sure you remove all items from the loadout slots before disabling the mod! Loadout menus 4 through 6 are only accessible while this mod is enabled.
 
