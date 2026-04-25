@@ -44,13 +44,13 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
             if (ModContent.GetInstance<LoadoutKeybinds>().ExLoadoutKeybinds[i].JustPressed) {
                 if (i < ModContent.GetInstance<LoadoutsConfig>().ExtraLoadouts) {
-                    TrySwitchToExLoadout(i);
+                    TrySwitchingExtraLoadout(i);
                 }
             }
         }
     }
 
-    public bool TrySwitchToExLoadout(int exLoadoutIndex) {
+    public bool TrySwitchingExtraLoadout(int exLoadoutIndex) {
         if (!IsExLoadoutIndexValid(exLoadoutIndex)) {
             return false;
         }

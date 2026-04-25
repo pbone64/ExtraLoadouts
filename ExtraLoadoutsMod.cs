@@ -51,7 +51,7 @@ public sealed partial class ExtraLoadoutsMod : Mod {
             "CurrentExtraLoadoutIndex.0" when args[1] is Player player => player.GetModPlayer<LoadoutPlayer>().CurrentExtraLoadoutIndex,
 
             "TotalExtraLoadouts.0" => EXTRA_LOADOUTS,
-            "SwitchToExtraLoadout.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().TrySwitchToExLoadout(index),
+            "SwitchToExtraLoadout.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().TrySwitchingExtraLoadout(index),
 
             "GetExtraLoadoutVanilla.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].Vanilla,
 

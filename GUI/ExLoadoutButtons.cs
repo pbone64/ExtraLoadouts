@@ -83,7 +83,7 @@ public sealed class ExLoadoutButtons : ILoadable {
                 }
 
                 if (Main.mouseLeft && Main.mouseLeftRelease) {
-                    modPlayer.TrySwitchToExLoadout(i);
+                    modPlayer.TrySwitchingExtraLoadout(i);
                 }
             }
 
