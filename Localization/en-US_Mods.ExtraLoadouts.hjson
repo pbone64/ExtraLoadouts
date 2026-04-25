@@ -15,15 +15,51 @@ Configs: {
 
 	DollsMaterial: {
 		Tooltip: ""
-		FallenStar.Label: Fallen Star
-		AnyGoldBar.Label: Gold or Platinum bar
-		AnyDemoniteBar.Label: Demonite or Crimtane bar
-		AnyShadowScale.Label: Shadow Scale or Tissue Sample
-		BeeWax.Label: Bee Wax
-		Bone.Label: Bone
-		AnySoul.Label: Any Soul
-		HallowedBar.Label: Hallowed Bar
-		ChlorophyteBar.Label: Chlorophyte Bar
+
+		FallenStar: {
+			Label: Fallen Star
+			Tooltip: ""
+		}
+
+		AnyGoldBar: {
+			Label: Gold or Platinum bar
+			Tooltip: ""
+		}
+
+		AnyDemoniteBar: {
+			Label: Demonite or Crimtane bar
+			Tooltip: ""
+		}
+
+		AnyShadowScale: {
+			Label: Shadow Scale or Tissue Sample
+			Tooltip: ""
+		}
+
+		BeeWax: {
+			Label: Bee Wax
+			Tooltip: ""
+		}
+
+		Bone: {
+			Label: Bone
+			Tooltip: ""
+		}
+
+		AnySoul: {
+			Label: Any Soul
+			Tooltip: ""
+		}
+
+		HallowedBar: {
+			Label: Hallowed Bar
+			Tooltip: ""
+		}
+
+		ChlorophyteBar: {
+			Label: Chlorophyte Bar
+			Tooltip: ""
+		}
 	}
 }
 
@@ -55,7 +91,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 1
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -65,7 +101,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 2
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -75,7 +111,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 3
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -85,7 +121,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 4
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -95,7 +131,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 5
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -105,7 +141,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 6
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -115,7 +151,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 7
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -125,7 +161,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 6
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}
@@ -135,7 +171,7 @@ Items: {
 		Tooltip:
 			'''
 			Copies the effect of the accessory in the same slot in loadout 6
-			Cannot copy the effects of an accessory that's also equipped in your current loadout
+			Cannot copy the effects of an accessory that is already equipped in your current loadout
 			Cannot copy other Loadout Voodoo Dolls
 			'''
 	}

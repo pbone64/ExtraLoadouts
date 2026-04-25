@@ -2,32 +2,32 @@
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace ExtraLoadouts {
-    public sealed class LoadoutsConfig : ModConfig {
-        public override ConfigScope Mode => ConfigScope.ClientSide;
+namespace ExtraLoadouts;
 
-        [Slider]
-        [Range(0, ExtraLoadoutsMod.EXTRA_LOADOUTS)]
-        [DefaultValue(ExtraLoadoutsMod.EXTRA_LOADOUTS)]
-        public int ExtraLoadouts;
+public sealed class LoadoutsConfig : ModConfig {
+    public override ConfigScope Mode => ConfigScope.ClientSide;
 
-        public enum DollsMaterial {
-            FallenStar,
-            AnyGoldBar,
-            AnyDemoniteBar,
-            AnyShadowScale,
-            BeeWax,
-            Bone,
-            AnySoul,
-            HallowedBar,
-            ChlorophyteBar,
-        }
+    [Slider]
+    [Range(0, ExtraLoadoutsMod.EXTRA_LOADOUTS)]
+    [DefaultValue(ExtraLoadoutsMod.EXTRA_LOADOUTS)]
+    public int ExtraLoadouts;
 
-
-        [DefaultValue(DollsMaterial.Bone)]
-        [DrawTicks]
-        [Slider]
-        [ReloadRequired]
-        public DollsMaterial DollsSecondaryMaterial;
+    public enum DollsMaterial {
+        FallenStar,
+        AnyGoldBar,
+        AnyDemoniteBar,
+        AnyShadowScale,
+        BeeWax,
+        Bone,
+        AnySoul,
+        HallowedBar,
+        ChlorophyteBar,
     }
+
+
+    [DefaultValue(DollsMaterial.Bone)]
+    [DrawTicks]
+    [Slider]
+    [ReloadRequired]
+    public DollsMaterial DollsSecondaryMaterial;
 }

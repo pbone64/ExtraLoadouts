@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,236 +9,239 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 using Terraria.UI;
 using Terraria.Utilities;
 
 using static ExtraLoadouts.LoadoutsConfig;
 
-namespace ExtraLoadouts.Items {
-    [Autoload(false)]
-    public sealed class LoadoutVoodooDoll : ModItem {
-        public sealed class LoadoutVoodooDollLoader : ILoadable {
-            void ILoadable.Load(Mod mod) {
-                for (int i = 0; i < ExtraLoadoutsMod.VANILLA_LOADOUTS; i++) {
-                    mod.AddContent(NewDoll(false, i));
-                }
+namespace ExtraLoadouts.Items;
 
-                for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
-                    mod.AddContent(NewDoll(true, i));
-                }
+[Autoload(false)]
+public sealed class LoadoutVoodooDoll : ModItem {
+    public sealed class LoadoutVoodooDollLoader : ILoadable {
+        void ILoadable.Load(Mod mod) {
+            for (int i = 0; i < ExtraLoadoutsMod.VANILLA_LOADOUTS; i++) {
+                mod.AddContent(NewDoll(false, i));
             }
 
-            public static LoadoutVoodooDoll NewDoll(bool extra, int index) {
-                return new() {
-                    Extra = extra,
-                    Index = index
-                };
-            }
-
-            void ILoadable.Unload() { }
-        }
-
-        public enum CanTakeEffectStatus {
-            CanBeEquipped,
-            CantCopyCurrentLoadout,
-            CantCopyLoadoutDoll,
-            AlreadyEquippedOnCurrentLoadout,
-            ModItemCantBeEquipped,
-            IsLikelyNone,
-        }
-
-        public bool Extra;
-        public int Index;
-        public Guid Guid;
-
-        public int LoadoutNumber => (Extra ? 4 : 1) + Index;
-
-        public override string Name => "LoadoutVoodooDoll" + LoadoutNumber;
-
-        public override void SetStaticDefaults() {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults() {
-            Item.width = 32;
-            Item.height = 28;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(0);
-            Item.accessory = true;
-        }
-
-        public override ModItem NewInstance(Item entity) {
-            LoadoutVoodooDoll doll = base.NewInstance(entity) as LoadoutVoodooDoll;
-            doll.Extra = Extra;
-            doll.Index = Index;
-            doll.Guid = Guid.NewGuid();
-            return doll;
-        }
-
-        public override void UpdateAccessory(Player player, bool hideVisual) {
-            DoAThingWithClonedItem(player, itemToCopy => {
-                player.GrantPrefixBenefits(itemToCopy);
-                player.GrantArmorBenefits(itemToCopy);
-                player.ApplyEquipFunctional(itemToCopy, hideVisual);
-            });
-        }
-
-        public override void UpdateVanity(Player player) {
-            DoAThingWithClonedItem(player, player.ApplyEquipVanity);
-        }
-
-        public override bool? PrefixChance(int pre, UnifiedRandom rand) {
-            // This should stop us from getting any prefixes
-            return false;
-        }
-
-        public override bool CanEquipAccessory(Player player, int slot, bool modded) {
-            return !IsPlayerCurrentlyOnMyLoadout(player);
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips) {
-            int index = tooltips.FindIndex(line => line.Name == "Tooltip2");
-            if (index != -1) {
-                tooltips.Insert(index + 1, new TooltipLine(Mod, "CurrentlyCopying",
-                    string.Format(
-                        Language.GetTextValue("Mods.ExtraLoadouts.CommonItemTooltips.LoadoutVoodooDollCurrentlyCopying"),
-                        GetCopiedItemText()
-                    )
-                ));
+            for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
+                mod.AddContent(NewDoll(true, i));
             }
         }
 
-        public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-            DoAThingWithClonedItem(Main.LocalPlayer, itemToCopy =>
-                ItemSlot.DrawItemIcon(itemToCopy, 10, spriteBatch, position, Main.inventoryScale, 32f, Color.White * (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 1.5f)
-            );
+        public static LoadoutVoodooDoll NewDoll(bool extra, int index) {
+            return new() {
+                Extra = extra,
+                Index = index
+            };
         }
 
-        public override void OnCreated(ItemCreationContext context) {
-            Guid = Guid.NewGuid();
+        void ILoadable.Unload() { }
+    }
+
+    public enum CanTakeEffectStatus {
+        CanBeEquipped,
+        CantCopyCurrentLoadout,
+        CantCopyLoadoutDoll,
+        AlreadyEquippedOnCurrentLoadout,
+        ModItemCantBeEquipped,
+        IsLikelyNone,
+    }
+
+    public bool Extra;
+    public int Index;
+    public Guid Guid;
+
+    public int LoadoutNumber => (Extra ? 4 : 1) + Index;
+
+    public override string Name => "LoadoutVoodooDoll" + LoadoutNumber;
+
+    public override void SetStaticDefaults() {
+        CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+    }
+
+    public override void SetDefaults() {
+        Item.width = 32;
+        Item.height = 28;
+        Item.rare = ItemRarityID.Blue;
+        Item.value = Item.sellPrice(0);
+        Item.accessory = true;
+    }
+
+    public override ModItem NewInstance(Item entity) {
+        LoadoutVoodooDoll doll = base.NewInstance(entity) as LoadoutVoodooDoll;
+        doll.Extra = Extra;
+        doll.Index = Index;
+        doll.Guid = Guid.NewGuid();
+        return doll;
+    }
+
+    public override void UpdateAccessory(Player player, bool hideVisual) {
+        DoAThingWithClonedItem(player, itemToCopy => {
+            player.GrantPrefixBenefits(itemToCopy);
+            player.GrantArmorBenefits(itemToCopy);
+            player.ApplyEquipFunctional(itemToCopy, hideVisual);
+        });
+    }
+
+    public override void UpdateVanity(Player player) {
+        DoAThingWithClonedItem(player, player.ApplyEquipVanity);
+    }
+
+    public override bool? PrefixChance(int pre, UnifiedRandom rand) {
+        // This should stop us from getting any prefixes
+        return false;
+    }
+
+    public override bool CanEquipAccessory(Player player, int slot, bool modded) {
+        return !IsPlayerCurrentlyOnMyLoadout(player);
+    }
+
+    public override void ModifyTooltips(List<TooltipLine> tooltips) {
+        int index = tooltips.FindIndex(line => line.Name == "Tooltip2");
+        if (index != -1) {
+            tooltips.Insert(index + 1, new TooltipLine(Mod, "CurrentlyCopying",
+                string.Format(
+                    Language.GetTextValue("Mods.ExtraLoadouts.CommonItemTooltips.LoadoutVoodooDollCurrentlyCopying"),
+                    GetCopiedItemText()
+                )
+            ));
+        }
+    }
+
+    public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        DoAThingWithClonedItem(Main.LocalPlayer, itemToCopy =>
+            ItemSlot.DrawItemIcon(itemToCopy, 10, spriteBatch, position, Main.inventoryScale, 32f, Color.White * (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 1.5f)
+        );
+    }
+
+    public override void OnCreated(ItemCreationContext context) {
+        Guid = Guid.NewGuid();
+    }
+
+    public override void AddRecipes() {
+        Recipe recipe = CreateRecipe()
+            .AddIngredient(ItemID.Silk, 3)
+            .AddTile(TileID.DemonAltar);
+
+        DollsMaterial material = ModContent.GetInstance<LoadoutsConfig>().DollsSecondaryMaterial;
+
+        switch (material) {
+            case DollsMaterial.FallenStar:
+                recipe.AddIngredient(ItemID.FallenStar, 2);
+                break;
+
+            case DollsMaterial.BeeWax:
+                recipe.AddIngredient(ItemID.BeeWax, 2);
+                break;
+
+            case DollsMaterial.Bone:
+                recipe.AddIngredient(ItemID.Bone, 2);
+                break;
+
+            case DollsMaterial.HallowedBar:
+                recipe.AddIngredient(ItemID.HallowedBar, 2);
+                break;
+
+            case DollsMaterial.ChlorophyteBar:
+                recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
+                break;
+
+            case DollsMaterial.AnyGoldBar:
+                recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyGoldBar, 2);
+                break;
+            case DollsMaterial.AnyDemoniteBar:
+                recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyDemoniteBar, 2);
+                break;
+            case DollsMaterial.AnyShadowScale:
+                recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyShadowScale, 2);
+                break;
+            case DollsMaterial.AnySoul:
+                recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnySoul, 2);
+                break;
         }
 
-        public override void AddRecipes() {
-            Recipe recipe = CreateRecipe()
-                .AddIngredient(ItemID.Silk, 3)
-                .AddTile(TileID.DemonAltar);
-
-            DollsMaterial material = ModContent.GetInstance<LoadoutsConfig>().DollsSecondaryMaterial;
-
-            switch (material) {
-                case DollsMaterial.FallenStar:
-                    recipe.AddIngredient(ItemID.FallenStar, 2);
-                    break;
-
-                case DollsMaterial.BeeWax:
-                    recipe.AddIngredient(ItemID.BeeWax, 2);
-                    break;
-
-                case DollsMaterial.Bone:
-                    recipe.AddIngredient(ItemID.Bone, 2);
-                    break;
-
-                case DollsMaterial.HallowedBar:
-                    recipe.AddIngredient(ItemID.HallowedBar, 2);
-                    break;
-
-                case DollsMaterial.ChlorophyteBar:
-                    recipe.AddIngredient(ItemID.ChlorophyteBar, 2);
-                    break;
-
-                case DollsMaterial.AnyGoldBar:
-                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyGoldBar, 2);
-                    break;
-                case DollsMaterial.AnyDemoniteBar:
-                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyDemoniteBar, 2);
-                    break;
-                case DollsMaterial.AnyShadowScale:
-                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnyShadowScale, 2);
-                    break;
-                case DollsMaterial.AnySoul:
-                    recipe.AddRecipeGroup(ExtraLoadoutsRecipeGroups.AnySoul, 2);
-                    break;
-            }
-
-            if (Extra) {
-                recipe.AddCondition(Language.GetText("Mods.ExtraLoadouts.RecipeConditions.ExtraLoadoutVoodooDoll" + (Index + 1)),
-                    () => Index < ModContent.GetInstance<LoadoutsConfig>().ExtraLoadouts);
-            }
-
-            recipe.Register();
+        if (Extra) {
+            recipe.AddCondition(Language.GetText("Mods.ExtraLoadouts.RecipeConditions.ExtraLoadoutVoodooDoll" + (Index + 1)),
+                () => Index < ModContent.GetInstance<LoadoutsConfig>().ExtraLoadouts);
         }
 
-        private string GetCopiedItemText() {
-            return DoAThingWithClonedItem(Main.LocalPlayer,
-                itemToCopy => $"{itemToCopy.AffixName()} [i:{itemToCopy.type}]",
-                () => Language.GetTextValue("Mods.ExtraLoadouts.Misc.LoadoutVoodooDollCopyingNothing")
-            );
+        recipe.Register();
+    }
+
+    private string GetCopiedItemText() {
+        return DoAThingWithClonedItem(Main.LocalPlayer,
+            itemToCopy => $"{itemToCopy.AffixName()} [i:{itemToCopy.type}]",
+            () => Language.GetTextValue("Mods.ExtraLoadouts.Misc.LoadoutVoodooDollCopyingNothing")
+        );
+    }
+
+    public CanTakeEffectStatus CanTakeEffect(Player player, Item itemToCopy, int slot) {
+        return
+            itemToCopy.IsLikelyNone() ? CanTakeEffectStatus.IsLikelyNone :
+            IsPlayerCurrentlyOnMyLoadout(player) ? CanTakeEffectStatus.CantCopyCurrentLoadout :
+            itemToCopy.ModItem is LoadoutVoodooDoll ? CanTakeEffectStatus.CantCopyLoadoutDoll :
+            !CheckCanEquip(itemToCopy, slot) ? CanTakeEffectStatus.ModItemCantBeEquipped :
+            !player.armor.Any(item => item.type != itemToCopy.type) ? CanTakeEffectStatus.AlreadyEquippedOnCurrentLoadout :
+            CanTakeEffectStatus.CanBeEquipped;
+    }
+
+    public Item GetItemToCopy(Player player, out int slot) {
+        // TODO support modded slots
+        var (vanilla, modded) = GetLoadoutToCopyFrom(player);
+        slot = Array.FindIndex(player.armor, item => {
+            return item.ModItem is LoadoutVoodooDoll doll && doll.Guid == Guid;
+        });
+
+        if (slot != -1) {
+            return vanilla.Armor[slot];
         }
 
-        public CanTakeEffectStatus CanTakeEffect(Player player, Item itemToCopy, int slot) {
-            return
-                itemToCopy.IsLikelyNone() ? CanTakeEffectStatus.IsLikelyNone :
-                IsPlayerCurrentlyOnMyLoadout(player) ? CanTakeEffectStatus.CantCopyCurrentLoadout :
-                itemToCopy.ModItem is LoadoutVoodooDoll ? CanTakeEffectStatus.CantCopyLoadoutDoll :
-                !CheckCanEquip(player, itemToCopy, slot) ? CanTakeEffectStatus.ModItemCantBeEquipped :
-                !player.armor.Any(item => item.type != itemToCopy.type) ? CanTakeEffectStatus.AlreadyEquippedOnCurrentLoadout :
-                CanTakeEffectStatus.CanBeEquipped;
+        return null;
+    }
+
+    private (EquipmentLoadout vanilla, ModAccessorySlotPlayer.ExEquipmentLoadout modded) GetLoadoutToCopyFrom(Player player) {
+        if (Extra) {
+            var modPlayer = player.GetModPlayer<LoadoutPlayer>();
+            return (modPlayer.ExtraLoadouts[Index].Vanilla, modPlayer.ExtraLoadouts[Index].ModLoader);
+        } else {
+            var modPlayer = player.GetModPlayer<ModAccessorySlotPlayer>();
+            return (player.Loadouts[Index], modPlayer.exLoadouts[Index]);
+        }
+    }
+
+    private bool IsPlayerCurrentlyOnMyLoadout(Player player) {
+        return Extra ?
+            player.GetModPlayer<LoadoutPlayer>().CurrentExtraLoadoutIndex == Index :
+            player.GetModPlayer<LoadoutPlayer>().CurrentExtraLoadoutIndex == -1 && player.CurrentLoadoutIndex == Index;
+    }
+
+    private static bool CheckCanEquip(Item itemToCopy, int slot) {
+        return
+            // Some mods CanEquipAccessory logic crashes when run on the player select screen
+            !Main.gameMenu &&
+            ItemLoader.CanEquipAccessory(itemToCopy, slot, itemToCopy.ModItem is not null);
+    }
+
+    public void DoAThingWithClonedItem(Player player, Action<Item> thing, Action fallbackThing = null) {
+        Item itemToCopy = GetItemToCopy(player, out int slot);
+
+        if (itemToCopy is null || CanTakeEffect(player, itemToCopy, slot) != CanTakeEffectStatus.CanBeEquipped) {
+            fallbackThing?.Invoke();
+            return;
         }
 
-        public Item GetItemToCopy(Player player, out int slot) {
-            EquipmentLoadout targetLoadout = GetLoadoutToCopyFrom(player);
-            slot = Array.FindIndex(player.armor, item => {
-                if (item.ModItem is LoadoutVoodooDoll doll) {
-                    return doll.Guid == Guid;
-                }
+        thing(itemToCopy);
+    }
 
-                return false;
-            });
+    public T DoAThingWithClonedItem<T>(Player player, Func<Item, T> thing, Func<T> fallbackThing) {
+        Item itemToCopy = GetItemToCopy(player, out int slot);
 
-            if (slot != -1) {
-                return targetLoadout.Armor[slot];
-            }
-
-            return null;
+        if (itemToCopy is null || CanTakeEffect(player, itemToCopy, slot) != CanTakeEffectStatus.CanBeEquipped) {
+            return fallbackThing();
         }
 
-        private EquipmentLoadout GetLoadoutToCopyFrom(Player player) {
-            LoadoutPlayer modPlayer = player.GetModPlayer<LoadoutPlayer>();
-            return (Extra ? modPlayer.ExLoadouts : player.Loadouts)[Index];
-        }
-
-        private bool IsPlayerCurrentlyOnMyLoadout(Player player) {
-            return Extra ?
-                player.GetModPlayer<LoadoutPlayer>().CurrentExLoadoutIndex == Index :
-                player.GetModPlayer<LoadoutPlayer>().CurrentExLoadoutIndex == -1 && player.CurrentLoadoutIndex == Index;
-        }
-
-        private bool CheckCanEquip(Player player, Item itemToCopy, int slot) {
-            return
-                // Some mods CanEquipAccessory logic crashes when run on the player select screen
-                !Main.gameMenu &&
-                ItemLoader.CanEquipAccessory(itemToCopy, slot, itemToCopy.ModItem is not null);
-        }
-
-        public void DoAThingWithClonedItem(Player player, Action<Item> thing, Action? fallbackThing = null) {
-            Item itemToCopy = GetItemToCopy(player, out int slot);
-
-            if (itemToCopy is null || CanTakeEffect(player, itemToCopy, slot) != CanTakeEffectStatus.CanBeEquipped) {
-                fallbackThing?.Invoke();
-                return;
-            }
-
-            thing(itemToCopy);
-        }
-
-        public T DoAThingWithClonedItem<T>(Player player, Func<Item, T> thing, Func<T> fallbackThing) {
-            Item itemToCopy = GetItemToCopy(player, out int slot);
-
-            if (itemToCopy is null || CanTakeEffect(player, itemToCopy, slot) != CanTakeEffectStatus.CanBeEquipped) {
-                return fallbackThing();
-            }
-
-            return thing(itemToCopy);
-        }
+        return thing(itemToCopy);
     }
 }
