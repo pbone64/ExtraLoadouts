@@ -50,7 +50,11 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         }
     }
 
-    public void TrySwitchToExLoadout(int exLoadoutIndex) {
+    public bool TrySwitchToExLoadout(int exLoadoutIndex) {
+        if (!IsExLoadoutIndexValid(exLoadoutIndex)) {
+            return false;
+        }
+
         if (CurrentExtraLoadoutIndex < 0) {
             // We're on a vanilla layout currently
             TrySwitchingVanillaToEx(exLoadoutIndex);
@@ -58,10 +62,12 @@ public sealed partial class LoadoutPlayer : ModPlayer {
             // We're already on a modded layout
             TrySwitchingExToEx(exLoadoutIndex);
         }
+
+        return true;
     }
 
     private void TrySwitchingVanillaToEx(int exLoadoutIndex) {
-        if (IsPlayerReadyToSwitchLoadouts() && IsExLoadoutIndexValid(exLoadoutIndex)) {
+        if (IsPlayerReadyToSwitchLoadouts()) {
             Player.Loadouts[Player.CurrentLoadoutIndex].Swap(Player);
 
             ExtraLoadouts[exLoadoutIndex].Swap(Player);
@@ -76,7 +82,7 @@ public sealed partial class LoadoutPlayer : ModPlayer {
     }
 
     private void TrySwitchingExToEx(int exLoadoutIndex) {
-        if (IsPlayerReadyToSwitchLoadouts() && IsExLoadoutIndexValid(exLoadoutIndex)) {
+        if (IsPlayerReadyToSwitchLoadouts()) {
             ExtraLoadouts[CurrentExtraLoadoutIndex].Swap(Player);
             ExtraLoadouts[exLoadoutIndex].Swap(Player);
             CurrentExtraLoadoutIndex = exLoadoutIndex;
