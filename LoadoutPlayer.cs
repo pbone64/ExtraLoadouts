@@ -5,7 +5,6 @@ using Terraria.GameContent.Drawing;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Default;
 using Terraria.UI;
 using static Terraria.ModLoader.BackupIO;
 

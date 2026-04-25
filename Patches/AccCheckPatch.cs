@@ -1,4 +1,4 @@
-﻿using ExtraLoadouts.Items;
+using ExtraLoadouts.Items;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using System;

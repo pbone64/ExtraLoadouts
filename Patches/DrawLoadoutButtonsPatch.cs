@@ -1,4 +1,4 @@
-﻿using ExtraLoadouts.GUI;
+using ExtraLoadouts.GUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.Cil;

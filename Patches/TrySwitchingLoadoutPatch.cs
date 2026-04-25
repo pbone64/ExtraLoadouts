@@ -2,7 +2,6 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExtraLoadouts.Patches;

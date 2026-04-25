@@ -1,4 +1,4 @@
-﻿using ExtraLoadouts.Items;
+using ExtraLoadouts.Items;
 using Terraria;
 using Terraria.ModLoader;
 
