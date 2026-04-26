@@ -236,16 +236,13 @@ public class ExtraEquipmentLoadout {
                 var dye = ItemIO.Load(tag.Get<TagCompound>(ModLoaderDyeKey));
                 var hide = tag.Get<bool>(ModLoaderHideKey);
 
-                ModContent.GetInstance<ExtraLoadoutsMod>().Logger.Info($"DEBUGME: {fullName} = {accessory}, {social}, {dye}, {hide}");
+                if (ModContent.TryFind<ModAccessorySlot>(fullName, out var slot)) { // Try to look up loaded slots with ModContent instead of searching ModAccessorySlotPlayer.slots right away, to account for legacy names
 
-                if (ModContent.TryFind<ModAccessorySlot>(fullName, out var slot)) {
-                    // Try to look up loaded slots with ModContent instead of searching ModAccessorySlotPlayer.slots right away, to account for legacy names
                     loadout.ExAccessorySlot[slot.Type] = accessory;
                     loadout.ExAccessorySlot[slot.Type + modPlayer.SlotCount] = social;
                     loadout.ExDyesAccessory[slot.Type] = dye;
                     loadout.ExHideAccessory[slot.Type] = hide;
-                } else if (modPlayer.slots.TryGetValue(fullName, out var index)) {
-                    // Unloaded slots are tracked in ModAccessorySlotPlayer.slots, so we get their index from there
+                } else if (modPlayer.slots.TryGetValue(fullName, out var index)) { // Unloaded slots are tracked in ModAccessorySlotPlayer.slots, so we get their index from there
                     loadout.ExAccessorySlot[index] = accessory;
                     loadout.ExAccessorySlot[index + modPlayer.SlotCount] = social;
                     loadout.ExDyesAccessory[index] = dye;
