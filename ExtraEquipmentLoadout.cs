@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 using Terraria.ModLoader.IO;
@@ -41,25 +42,43 @@ public class ExtraEquipmentLoadout {
             || ModLoader.ExAccessorySlot.Any(item => !item.IsLikelyNone()) || ModLoader.ExDyesAccessory.Any(item => !item.IsLikelyNone());
     }
 
-    public void DropOn(Player player) {
-        static void DropLoadout(Player player, int count, Item[] slots, Item[] dye) {
-            for (int i = 0; i < count * 2; i++) {
-                player.QuickSpawnItemDirect(null, slots[i]);
+    public void QuickSpawnOn(Player player, IEntitySource source) {
+        static void QuickSpawnLoadout(Player player, IEntitySource source, Item[] slots, Item[] dye) {
+            for (int i = 0; i < slots.Length; i++) {
+                player.QuickSpawnItemDirect(source, slots[i]);
             }
 
-            for (int i = 0; i < count; i++) {
-                player.QuickSpawnItemDirect(null, dye[i]);
+            for (int i = 0; i < dye.Length; i++) {
+                player.QuickSpawnItemDirect(source, dye[i]);
             }
         }
 
-        DropLoadout(player, Vanilla.Hide.Length, Vanilla.Armor, Vanilla.Dye);
-        DropLoadout(player, LoaderManager.Get<AccessorySlotLoader>().TotalCount, ModLoader.ExAccessorySlot, ModLoader.ExDyesAccessory);
+        QuickSpawnLoadout(player, source, Vanilla.Armor, Vanilla.Dye);
+        QuickSpawnLoadout(player, source, ModLoader.ExAccessorySlot, ModLoader.ExDyesAccessory);
+    }
+
+    public void DropItems(Player player, IEntitySource source) {
+        static void DropLoadout(Player player, IEntitySource source, Item[] slots, Item[] dye) {
+            for (int i = 0; i < slots.Length; i++) {
+                player.TryDroppingSingleItem(source, slots[i]);
+            }
+
+            for (int i = 0; i < dye.Length; i++) {
+                player.TryDroppingSingleItem(source, dye[i]);
+            }
+        }
+
+        DropLoadout(player, source, Vanilla.Armor, Vanilla.Dye);
+        DropLoadout(player, source, ModLoader.ExAccessorySlot, ModLoader.ExDyesAccessory);
     }
 
     public void Send(BinaryWriter writer) {
-        // TODO don't use count
         static void SendLoadout(BinaryWriter writer, int count, Item[] slots, Item[] dye, bool[] hide) {
             writer.Write7BitEncodedInt(count);
+
+            // an incredibly stupid hack: if count is negative, we are syncing the Vanilla array which has three less hide entries
+            var hideCountAdjustment = count < 0 ? -3 : 0;
+            count = int.Abs(count);
 
             for (int i = 0; i < count * 2; i++) {
                 ItemIO.Send(slots[i], writer, writeStack: true);
@@ -69,18 +88,23 @@ public class ExtraEquipmentLoadout {
                 ItemIO.Send(dye[i], writer, writeStack: true);
             }
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count + hideCountAdjustment; i++) {
                 writer.Write(hide[i]);
             }
         }
 
-        SendLoadout(writer, Vanilla.Hide.Length, Vanilla.Armor, Vanilla.Dye, Vanilla.Hide);
+        SendLoadout(writer, -Vanilla.Dye.Length, Vanilla.Armor, Vanilla.Dye, Vanilla.Hide);
+
+
         SendLoadout(writer, LoaderManager.Get<AccessorySlotLoader>().TotalCount, ModLoader.ExAccessorySlot, ModLoader.ExDyesAccessory, ModLoader.ExHideAccessory);
     }
 
     public void Receieve(BinaryReader reader) {
         static void ReceiveLoadout(BinaryReader reader, Item[] armor, Item[] dye, bool[] hide) {
             int count = reader.Read7BitEncodedInt();
+
+            var hideCountAdjustment = count < 0 ? -3 : 0;
+            count = int.Abs(count);
 
             for (int i = 0; i < count * 2; i++) {
                 armor[i] = ItemIO.Receive(reader, readStack: true);
@@ -90,7 +114,7 @@ public class ExtraEquipmentLoadout {
                 dye[i] = ItemIO.Receive(reader, readStack: true);
             }
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count + hideCountAdjustment; i++) {
                 hide[i] = reader.ReadBoolean();
             }
         }

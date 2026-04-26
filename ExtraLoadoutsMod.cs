@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
+using System.Text;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -41,31 +43,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
             new(172, 106, 190),
         }
     };
-
-    public override object Call(params object[] args) {
-        if (args[0] is not string method) {
-            return "args[0] must be a string specifying the method to call";
-        }
-
-        return method switch {
-            "CurrentExtraLoadoutIndex.0" when args[1] is Player player => player.GetModPlayer<LoadoutPlayer>().CurrentExtraLoadoutIndex,
-
-            "TotalExtraLoadouts.0" => EXTRA_LOADOUTS,
-            "SwitchToExtraLoadout.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().TrySwitchingExtraLoadout(index),
-
-            "GetExtraLoadoutVanilla.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].Vanilla,
-
-            "GetExtraLoadoutVanillaItems.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].Vanilla.Armor,
-            "GetExtraLoadoutVanillaDyes.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].Vanilla.Dye,
-            "GetExtraLoadoutVanillaHide.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].Vanilla.Hide,
-
-            "GetExtraLoadoutModLoaderItems.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].ModLoader.ExAccessorySlot,
-            "GetExtraLoadoutModLoaderDyes.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].ModLoader.ExDyesAccessory,
-            "GetExtraLoadoutModLoaderHide.0" when args[1] is Player player && args[2] is int index => player.GetModPlayer<LoadoutPlayer>().ExtraLoadouts[index].ModLoader.ExHideAccessory,
-
-            _ => throw new Exception("Invalid method name or arguments")
-        };
-    }
 
     public static int LoadoutNumber(int loadoutIndex, bool ex) {
         return loadoutIndex + 1 + (ex ? VANILLA_LOADOUTS : 0);

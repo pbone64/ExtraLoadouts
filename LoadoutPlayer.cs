@@ -5,19 +5,18 @@ using Terraria.GameContent.Drawing;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 using Terraria.UI;
-using static Terraria.ModLoader.BackupIO;
 
 namespace ExtraLoadouts;
 
-// TODO DropItems
 public sealed partial class LoadoutPlayer : ModPlayer {
     public ExtraEquipmentLoadout CurrentExLoadout => ExtraLoadouts[CurrentExtraLoadoutIndex];
 
     public ExtraEquipmentLoadout[] ExtraLoadouts { get; } = new ExtraEquipmentLoadout[ExtraLoadoutsMod.EXTRA_LOADOUTS];
     public int CurrentExtraLoadoutIndex { get; set; } = -1;
 
-    private List<ExtraEquipmentLoadout> OverflowExtraLoadouts { get; set; } = new();
+    private List<ExtraEquipmentLoadout> OverflowExtraLoadouts { get; set; } = [];
 
     private int DidWeLoadData { get; set; } = -1;
 
@@ -34,10 +33,18 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         Main.NewText("DidWeLoadData: " + DidWeLoadData);
 
         foreach (ExtraEquipmentLoadout overflowLoadout in OverflowExtraLoadouts) {
-            overflowLoadout.DropOn(Player);
+            overflowLoadout.QuickSpawnOn(Player, null);
         }
 
         OverflowExtraLoadouts.Clear();
+    }
+
+    public static void DropItems(Player player) {
+        var modPlayer = player.GetModPlayer<LoadoutPlayer>();
+        var entitySource = player.GetItemSource_Death();
+        foreach (var loadout in modPlayer.ExtraLoadouts) {
+            loadout.DropItems(player, entitySource);
+        }
     }
 
     public override void ProcessTriggers(TriggersSet triggersSet) {
@@ -50,9 +57,9 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         }
     }
 
-    public bool TrySwitchingExtraLoadout(int exLoadoutIndex) {
+    public void TrySwitchingExtraLoadout(int exLoadoutIndex) {
         if (!IsExLoadoutIndexValid(exLoadoutIndex)) {
-            return false;
+            return;
         }
 
         if (CurrentExtraLoadoutIndex < 0) {
@@ -63,14 +70,17 @@ public sealed partial class LoadoutPlayer : ModPlayer {
             TrySwitchingExToEx(exLoadoutIndex);
         }
 
-        return true;
+        // This is normally called in ModAccessorySlotPlayer::OnEquipmentLoadoutsSwitched(), which only runs when the Vanilla loadout index changes
+        Player.GetModPlayer<ModAccessorySlotPlayer>().DetectConflictsWithSharedSlots();
     }
 
     private void TrySwitchingVanillaToEx(int exLoadoutIndex) {
         if (IsPlayerReadyToSwitchLoadouts()) {
-            Player.Loadouts[Player.CurrentLoadoutIndex].Swap(Player);
+            ModContent.GetInstance<ExtraLoadoutsMod>().InvokePreSwapLoadoutsCallback(Player, false, Player.CurrentLoadoutIndex, true, exLoadoutIndex);
 
+            Player.Loadouts[Player.CurrentLoadoutIndex].Swap(Player);
             ExtraLoadouts[exLoadoutIndex].Swap(Player);
+
             CurrentExtraLoadoutIndex = exLoadoutIndex;
 
             if (Player.whoAmI == Main.myPlayer) {
@@ -78,13 +88,18 @@ public sealed partial class LoadoutPlayer : ModPlayer {
 
                 SwitchLoadoutFX();
             }
+
+            ModContent.GetInstance<ExtraLoadoutsMod>().InvokePostSwapLoadoutsCallback(Player, false, Player.CurrentLoadoutIndex, true, exLoadoutIndex);
         }
     }
 
     private void TrySwitchingExToEx(int exLoadoutIndex) {
         if (IsPlayerReadyToSwitchLoadouts()) {
+            ModContent.GetInstance<ExtraLoadoutsMod>().InvokePreSwapLoadoutsCallback(Player, true, CurrentExtraLoadoutIndex, true, exLoadoutIndex);
+
             ExtraLoadouts[CurrentExtraLoadoutIndex].Swap(Player);
             ExtraLoadouts[exLoadoutIndex].Swap(Player);
+
             CurrentExtraLoadoutIndex = exLoadoutIndex;
 
             if (Player.whoAmI == Main.myPlayer) {
@@ -92,6 +107,8 @@ public sealed partial class LoadoutPlayer : ModPlayer {
 
                 SwitchLoadoutFX();
             }
+
+            ModContent.GetInstance<ExtraLoadoutsMod>().InvokePostSwapLoadoutsCallback(Player, true, CurrentExtraLoadoutIndex, true, exLoadoutIndex);
         }
     }
 

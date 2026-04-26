@@ -124,64 +124,73 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         }
 
         private static class EquipmentLoadoutSerializer {
+            public const string SerializerVersionKey = "SerializerVersion";
             public const int SerializerVersion = 2;
+
+            public const string ArmorKey = "Armor";
+            public const string DyeKey = "Dye";
+            public const string HideKey = "Hide";
+
+            public const string ArrayLengthKey = "Length";
+            public const string ArrayItemTagPrefix = "Item";
+            public const string ItemDataKey = "Item";
+
 
             public static TagCompound Serialize(EquipmentLoadout value) {
                 TagCompound tag = new();
 
                 TagCompound armorTag = new();
                 SerializeItemArray(armorTag, value.Armor);
-                // TODO make me not nameof
-                tag.Add(nameof(EquipmentLoadout.Armor), armorTag);
+                tag.Add(ArmorKey, armorTag);
 
                 TagCompound dyeTag = new();
                 SerializeItemArray(dyeTag, value.Dye);
-                tag.Add(nameof(EquipmentLoadout.Dye), dyeTag);
+                tag.Add(DyeKey, dyeTag);
 
-                tag.Add(nameof(EquipmentLoadout.Hide), value.Hide);
+                tag.Add(HideKey, value.Hide);
 
                 return tag;
             }
 
             private static void SerializeItemArray(TagCompound tag, Item[] items) {
-                tag.Add(nameof(Array.Length), items.Length);
+                tag.Add(ArrayLengthKey, items.Length);
                 for (int i = 0; i < items.Length; i++) {
-                    tag.Add(nameof(Item) + i, SerializeItem(items[i]));
+                    tag.Add(ArrayItemTagPrefix + i, SerializeItem(items[i]));
                 }
             }
 
             private static TagCompound SerializeItem(Item item) {
                 return new() {
-                    { nameof(Item), ItemIO.Save(item) },
-                    { nameof(SerializerVersion), SerializerVersion },
+                    { ItemDataKey, ItemIO.Save(item) },
+                    { SerializerVersionKey, SerializerVersion },
                 };
             }
 
             public static EquipmentLoadout Deserialize(TagCompound tag) {
                 EquipmentLoadout loadout = new();
 
-                TagCompound armorTag = tag.Get<TagCompound>(nameof(EquipmentLoadout.Armor));
+                TagCompound armorTag = tag.Get<TagCompound>(ArmorKey);
                 loadout.Armor = DeserializeItemArray(armorTag);
 
-                TagCompound dyeTag = tag.Get<TagCompound>(nameof(EquipmentLoadout.Dye));
+                TagCompound dyeTag = tag.Get<TagCompound>(DyeKey);
                 loadout.Dye = DeserializeItemArray(dyeTag);
 
-                bool[] hide = tag.Get<bool[]>(nameof(EquipmentLoadout.Hide));
+                bool[] hide = tag.Get<bool[]>(HideKey);
                 loadout.Hide = hide;
 
                 return loadout;
             }
 
             private static Item[] DeserializeItemArray(TagCompound tag) {
-                int length = tag.GetInt(nameof(Array.Length));
+                int length = tag.GetInt(ArrayLengthKey);
 
                 Item[] items = new Item[length];
 
                 for (int i = 0; i < items.Length; i++) {
-                    TagCompound itemTag = tag.Get<TagCompound>(nameof(Item) + i);
+                    TagCompound itemTag = tag.Get<TagCompound>(ArrayItemTagPrefix + i);
                     int version = 1;
-                    if (itemTag.ContainsKey(nameof(SerializerVersion))) {
-                        version = itemTag.GetInt(nameof(SerializerVersion));
+                    if (itemTag.ContainsKey(SerializerVersionKey)) {
+                        version = itemTag.GetInt(SerializerVersionKey);
                     }
 
                     switch (version) {
@@ -198,14 +207,19 @@ public sealed partial class LoadoutPlayer : ModPlayer {
                 return items;
             }
 
+            public const string LegacyItemNetIDKey = "netID";
+            public const string LegacyItemStackKey = "stack";
+            public const string LegacyItemPrefixKey = "prefix";
+            public const string LegacyItemModDataKey = "ModData";
+
             private static Item DeserializeItem_1(TagCompound tag) {
-                int netId = tag.GetInt(nameof(Item.netID));
-                int stack = tag.GetInt(nameof(Item.stack));
-                int prefix = tag.GetInt(nameof(Item.prefix));
+                int netId = tag.GetInt(LegacyItemNetIDKey);
+                int stack = tag.GetInt(LegacyItemStackKey);
+                int prefix = tag.GetInt(LegacyItemPrefixKey);
 
                 Item item = new(netId, stack, prefix);
 
-                if (tag.TryGet("ModData", out TagCompound modData)) {
+                if (tag.TryGet(LegacyItemModDataKey, out TagCompound modData)) {
                     item.ModItem?.LoadData(modData);
                 }
 
@@ -213,7 +227,7 @@ public sealed partial class LoadoutPlayer : ModPlayer {
             }
 
             private static Item DeserializeItem_2(TagCompound tag) {
-                return ItemIO.Load(tag.Get<TagCompound>(nameof(Item)));
+                return ItemIO.Load(tag.Get<TagCompound>(ItemDataKey));
             }
         }
     }

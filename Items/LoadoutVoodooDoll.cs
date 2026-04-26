@@ -17,6 +17,7 @@ using static ExtraLoadouts.LoadoutsConfig;
 
 namespace ExtraLoadouts.Items;
 
+// TODO removeme
 [Autoload(false)]
 public sealed class LoadoutVoodooDoll : ModItem {
     public sealed class LoadoutVoodooDollLoader : ILoadable {

@@ -10,6 +10,14 @@
 
 Special thanks to eugine1beetle for reporting multiple major bugs and contributing improvements!
 
+[h2]Recent Changes (v2.0.0)[/h2]
+[list]
+ [*] Loadouts added by this mod now support mod accessory slots.
+ [*] Completely revamped multiplayer code to be significantly more stable and resilient.
+ [*] Added Mod.Call functions to allow other mod developers to easily add support.
+ [*] Items from loadouts added by this mod are dropped on Mediumcore death
+[/list]
+
 [h1]Links[/h1]
 [list]
  [*] GitHub: https://github.com/pbone64/ExtraLoadouts
