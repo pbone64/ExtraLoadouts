@@ -31,7 +31,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
 
     #region SyncEntireLoadout
     public static void Send_SyncEntireLoadout(int toWho, Player fromPlayer, int loadoutIndex) {
-        Main.NewText($"Send_SyncEntireLoadout({toWho}, {fromPlayer}, {loadoutIndex})");
         ModPacket packet = ModContent.GetInstance<ExtraLoadoutsMod>().GetPacket();
         packet.Write(PACKET_SYNC_ENTIRE_LOADOUT);
 
@@ -43,8 +42,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
     }
 
     public static void Receieve_SyncEntireLoadout(BinaryReader reader, int fromWho) {
-        Main.NewText("Receive_SyncEntireLoadout()");
-
         int whosLoadout = reader.Read7BitEncodedInt();
         int loadout = reader.Read7BitEncodedInt();
 
@@ -60,7 +57,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
 
     #region SyncLoadoutSlot
     public static void Send_SyncLoadoutSlot(int toWho, Player fromPlayer, int extraLoadoutIndex, bool modded, bool dye, int slot) {
-        Main.NewText($"Send_SyncLoadoutSlot({toWho}, {fromPlayer}, {extraLoadoutIndex}, {modded}, {dye}, {slot})");
         ModPacket packet = ModContent.GetInstance<ExtraLoadoutsMod>().GetPacket();
         packet.Write(PACKET_SYNC_LOADOUT_SLOT);
 
@@ -76,8 +72,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
     }
 
     public static void Recieve_SyncLoadoutSlot(BinaryReader reader, int fromWho) {
-        Main.NewText("Recieve_SyncLoadoutSlot()");
-
         int whosLoadout = reader.Read7BitEncodedInt();
         int extraLoadoutIndex = reader.Read7BitEncodedInt();
         reader.ReadFlags(out bool modded, out bool dye);
@@ -115,7 +109,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
 
     #region SyncLoadoutSelection
     public static void Send_SyncLoadoutSelection(int toWho, Player ofPlayer) {
-        Main.NewText($"Send_SyncLoadoutSlot({toWho}, {ofPlayer})");
         ModPacket packet = ModContent.GetInstance<ExtraLoadoutsMod>().GetPacket();
         packet.Write(PACKET_SYNC_LOADOUT_SELECTION);
 
@@ -126,7 +119,6 @@ public sealed partial class ExtraLoadoutsMod : Mod {
     }
 
     public static void Receive_SyncLoadoutSelection(BinaryReader reader, int fromWho) {
-        Main.NewText("Receive_SyncExLoadoutSelection");
         int whosLoadout = reader.Read7BitEncodedInt();
         int loadoutIndex = reader.Read7BitEncodedInt();
 
