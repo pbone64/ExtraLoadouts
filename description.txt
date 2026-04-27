@@ -1,4 +1,4 @@
-[c/ffe745:Extended Equipment Loadouts] is quality-of-life mod that adds 6 extra loadouts.
+[c/ffe745:Extra Equipment Loadouts] is quality-of-life mod that adds 6 extra loadouts.
 
 Note: Make sure you remove all items from the loadout slots BEFORE disabling the mod! Loadout menus 4 through 9 are only accessible while this mod is enabled.
 
@@ -6,7 +6,8 @@ Cross-Mod Support
  * Transferable Loadouts: Allows you to favourite equipment to carry them between loadouts (including loadouts added by this mod!)
 
 Recent Changes (v2.0.0)
- * Loadouts added by this mod now support mod accessory slots. This means that this mod now works with Wing Slot ;)
+ * Removed Loadout Voodoo Dolls. Instead, please use the "Transferable Loadouts" mod (by MingCat), which this mod now supports!
+ * Loadouts added by this mod now support mod accessory slots. This means that this mod now works with Wing Slot and similar mods ;)
  * Items from loadouts added by this mod are dropped on Mediumcore death.
  * Completely revamped multiplayer code to be significantly more stable and resilient.
  * Added Mod.Call functions to allow other mod developers to easily add support.

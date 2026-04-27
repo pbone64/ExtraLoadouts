@@ -22,17 +22,17 @@ Configs: {
 		}
 
 		AnyGoldBar: {
-			Label: Gold or Platinum bar
+			Label: Any Gold Bar
 			Tooltip: ""
 		}
 
 		AnyDemoniteBar: {
-			Label: Demonite or Crimtane bar
+			Label: Any Demonite Bar
 			Tooltip: ""
 		}
 
 		AnyShadowScale: {
-			Label: Shadow Scale or Tissue Sample
+			Label: Any Shadow Scale
 			Tooltip: ""
 		}
 
@@ -72,118 +72,9 @@ GUI: {
 	Loadout9: Loadout 9
 	DisabledButOccupied:
 		'''
-		This layout was disabled in the mod's config but it still contains items!
+		This loadout was disabled in the mod's config but it still contains items!
 		It will remain accessible until all items are removed from it.
 		'''
-}
-
-RecipeConditions: {
-	ExtraLoadoutVoodooDoll1: At least one extra slot must be enabled in Extended Equipment Loadouts config
-	ExtraLoadoutVoodooDoll2: At least two extra slot must be enabled in Extended Equipment Loadouts config
-	ExtraLoadoutVoodooDoll3: At least three extra slot must be enabled in Extended Equipment Loadouts config
-}
-
-CommonItemTooltips.LoadoutVoodooDollCurrentlyCopying: Currently Copying: {0}
-
-Items: {
-	LoadoutVoodooDoll1: {
-		DisplayName: Loadout Voodoo Doll 1
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 1
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll2: {
-		DisplayName: Loadout Voodoo Doll 2
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 2
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll3: {
-		DisplayName: Loadout Voodoo Doll 3
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 3
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll4: {
-		DisplayName: Loadout Voodoo Doll 4
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 4
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll5: {
-		DisplayName: Loadout Voodoo Doll 5
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 5
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll6: {
-		DisplayName: Loadout Voodoo Doll 6
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 6
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll7: {
-		DisplayName: Loadout Voodoo Doll 7
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 7
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll8: {
-		DisplayName: Loadout Voodoo Doll 8
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 6
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-
-	LoadoutVoodooDoll9: {
-		DisplayName: Loadout Voodoo Doll 9
-		Tooltip:
-			'''
-			Copies the effect of the accessory in the same slot in loadout 6
-			Cannot copy the effects of an accessory that is already equipped in your current loadout
-			Cannot copy other Loadout Voodoo Dolls
-			'''
-	}
-}
-
-Misc.LoadoutVoodooDollCopyingNothing: Nothing
-
-RecipeGroup: {
-	AnyGoldBar: Any Gold Bar
-	AnyDemoniteBar: Any Demonite Bar
-	AnyShadowScale: Shadow Scale or Tissue Sample
-	AnySoul: Any Soul
 }
 
 Keybinds: {
@@ -193,4 +84,87 @@ Keybinds: {
 	SwapToLoadout7.DisplayName: Loadout 7
 	SwapToLoadout8.DisplayName: Loadout 8
 	SwapToLoadout9.DisplayName: Loadout 9
+}
+
+Items: {
+	LoadoutVoodooDoll1: {
+		DisplayName: Loadout Voodoo Doll 1
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll2: {
+		DisplayName: Loadout Voodoo Doll 2
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll3: {
+		DisplayName: Loadout Voodoo Doll 3
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll4: {
+		DisplayName: Loadout Voodoo Doll 4
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll5: {
+		DisplayName: Loadout Voodoo Doll 5
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll6: {
+		DisplayName: Loadout Voodoo Doll 6
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll7: {
+		DisplayName: Loadout Voodoo Doll 7
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll8: {
+		DisplayName: Loadout Voodoo Doll 8
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
+
+	LoadoutVoodooDoll9: {
+		DisplayName: Loadout Voodoo Doll 9
+		Tooltip:
+			'''
+			This accessory has been deprecated and does nothing
+			Please use the "Transferable Loadouts" mod instead
+			'''
+	}
 }

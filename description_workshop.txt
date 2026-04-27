@@ -1,22 +1,27 @@
-[b]Extended Equipment Loadouts[/b] is quality-of-life mod that adds 6 extra loadouts.
+[b]Extra Equipment Loadouts[/b] is quality-of-life mod that adds 6 extra loadouts.
 
 [b]Note:[/b] Make sure you remove all items from the loadout slots BEFORE disabling the mod! Loadout menus 4 through 9 are only accessible while this mod is enabled.
 
 [h1]Cross-Mod Support[/h1]
 [list]
  [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588960936]Transferable Loadouts[/url]: Allows you to favourite equipment to carry them between loadouts (including loadouts added by this mod!)
+ [*] Other mods can add support by following these [url=https://github.com/pbone64/ExtraLoadouts/wiki/Mod.Call]instructions[/url]
 [/list]
 
 [h1]Recent Changes (v2.0.0)[/h1]
 [list]
- [*] Loadouts added by this mod now support mod accessory slots. [u]This means that this mod now works with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2597324266]Wing Slot[/url][/u] ;)
+ [*] Removed Loadout Voodoo Dolls. Instead, please use the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588960936]Transferable Loadouts[/url] mod (by MingCat), which this mod now supports!
+ [*] Loadouts added by this mod now support mod accessory slots. [u]This means that this mod now works with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2597324266]Wing Slot and similar mods[/url][/u] ;)
  [*] Items from loadouts added by this mod are dropped on Mediumcore death.
  [*] Completely revamped multiplayer code to be significantly more stable and resilient.
  [*] Added Mod.Call functions to allow other mod developers to easily add support.
 [/list]
 
+If you found this mod useful, consider leaving me a tip on [url=https://ko-fi.com/pbone]Ko-fi[/url]!
+
 [h1]Links[/h1]
 [list]
  [*] GitHub: https://github.com/pbone64/ExtraLoadouts
  [*] Discord: https://discord.gg/TRJqeq3Acm
+ [*] Cross-Mod integration documentation: https://github.com/pbone64/ExtraLoadouts/wiki/Mod.Call
 [/list]
