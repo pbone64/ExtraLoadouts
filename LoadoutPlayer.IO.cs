@@ -61,8 +61,6 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         }
 
         public static void LoadData(TagCompound data, LoadoutPlayer forPlayer) {
-            forPlayer.DidWeLoadData = 1;
-
             if (data.TryGet(CurrentLoadoutKey, out int currentExLoadoutIndex)) {
                 forPlayer.CurrentExtraLoadoutIndex = currentExLoadoutIndex;
             }
@@ -104,8 +102,6 @@ public sealed partial class LoadoutPlayer : ModPlayer {
         }
 
         public static void LoadData(TagCompound data, LoadoutPlayer forPlayer) {
-            forPlayer.DidWeLoadData = 0;
-
             if (data.TryGet(CurrentExtraLoadoutIndexKey, out int currentExLoadoutIndex)) {
                 forPlayer.CurrentExtraLoadoutIndex = currentExLoadoutIndex;
             }

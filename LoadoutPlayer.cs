@@ -18,10 +18,7 @@ public sealed partial class LoadoutPlayer : ModPlayer {
 
     private List<ExtraEquipmentLoadout> OverflowExtraLoadouts { get; set; } = [];
 
-    private int DidWeLoadData { get; set; } = -1;
-
     public override void Initialize() {
-        DidWeLoadData = -1;
         for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
             ExtraLoadouts[i] = new ExtraEquipmentLoadout(Player);
         }
@@ -30,8 +27,6 @@ public sealed partial class LoadoutPlayer : ModPlayer {
     }
 
     public override void OnEnterWorld() {
-        Main.NewText("DidWeLoadData: " + DidWeLoadData);
-
         foreach (ExtraEquipmentLoadout overflowLoadout in OverflowExtraLoadouts) {
             overflowLoadout.QuickSpawnOn(Player, null);
         }
