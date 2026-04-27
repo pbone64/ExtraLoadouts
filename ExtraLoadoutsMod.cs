@@ -1,8 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Linq;
-using System.Text;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace ExtraLoadouts;
