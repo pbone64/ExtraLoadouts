@@ -18,12 +18,12 @@ public sealed partial class LoadoutPlayer : ModPlayer {
 
     private List<ExtraEquipmentLoadout> OverflowExtraLoadouts { get; set; } = [];
 
-    public override void Initialize() {
-        for (int i = 0; i < ExtraLoadoutsMod.EXTRA_LOADOUTS; i++) {
-            ExtraLoadouts[i] = new ExtraEquipmentLoadout(Player);
-        }
+    private bool DidWeLoadData { get; set; } = false;
 
-        CurrentExtraLoadoutIndex = -1;
+    public LoadoutPlayer() {
+        for (int i = 0; i < ExtraLoadouts.Length; i++) {
+            ExtraLoadouts[i] = new(LoaderManager.Get<AccessorySlotLoader>().list.Count);
+        }
     }
 
     public override void OnEnterWorld() {

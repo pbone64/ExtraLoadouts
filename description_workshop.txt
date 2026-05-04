@@ -8,6 +8,11 @@
  [*] Other mods can add support by following these [url=https://github.com/pbone64/ExtraLoadouts/wiki/Mod.Call]instructions[/url]
 [/list]
 
+[h1]Recent Changes (v2.0.1)[/h1]
+[list]
+ [*] Fixed a saving/loading error and crash that affected certain player files.
+[/list]
+
 [h1]Recent Changes (v2.0.0)[/h1]
 [list]
  [*] Removed Loadout Voodoo Dolls. Instead, please use the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588960936]Transferable Loadouts[/url] mod (by MingCat), which this mod now supports!

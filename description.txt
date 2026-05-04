@@ -5,6 +5,9 @@ Note: Make sure you remove all items from the loadout slots BEFORE disabling the
 Cross-Mod Support
  * Transferable Loadouts: Allows you to favourite equipment to carry them between loadouts (including loadouts added by this mod!)
 
+Recent Changes (v2.0.1)
+* Fixed a saving/loading error and crash that affected certain player files.
+
 Recent Changes (v2.0.0)
  * Removed Loadout Voodoo Dolls. Instead, please use the "Transferable Loadouts" mod (by MingCat), which this mod now supports!
  * Loadouts added by this mod now support mod accessory slots. This means that this mod now works with Wing Slot and similar mods ;)

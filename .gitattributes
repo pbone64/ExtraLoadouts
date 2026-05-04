@@ -1,2 +1,5 @@
 * text eol=lf
-Localization/* eol=crlf
+Localization/* text eol=crlf
+
+*.png binary
+*.pdn binary
